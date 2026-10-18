@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap');
+
+/* ── Tailwind v4: Brand color identity & Fonts ───────────────────────── */
+@theme {
+  /* Fonts requested: inter, playfair, sans, serif */
+  --font-inter:    "Inter", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-sans:     "Inter", sans-serif;
+  --font-serif:    "Playfair Display", serif;
+
+  /* Theme Aliases */
+  --font-heading:  "Playfair Display", serif;
+  --font-body:     "Inter", sans-serif;
+
+  /* Brand Colors sampled from official identity */
+  --color-brand-red:   #CF3838;
+  --color-brand-blue:  #0078B8;
+  --color-brand-black: #000000;
+  --color-brand-white: #FFFFFF;
+
+  /* Semantic Theme Colors */
+  --color-primary:     #0078B8;
+  --color-secondary:   #CF3838;
+  --color-accent:      #CF3838;
+  --color-text-dark:   #000000;
+  --color-surface:     #FFFFFF;
+}
+
+/* ── CSS Custom Properties ───────────────────────────────────────────── */
+:root {
+  /* Official Brand Palette */
+  --color-red:       #CF3838; /* RGB: 207, 56, 56 - Outer emblem & "Ra" lettering */
+  --color-blue:      #0078B8; /* RGB: 0, 120, 184 - "k" lettering & inner details */
+  --color-black:     #000000; /* RGB: 0, 0, 0 - Typography & slogans */
+  --color-white:     #FFFFFF; /* RGB: 255, 255, 255 - Background color */
+
+  /* Functional mappings */
+  --color-primary:   #0078B8;
+  --color-accent:    #CF3838;
+  --color-text:      #000000;
+  --color-bg:        #FFFFFF;
+
+  /* Brand Gradients */
+  --gradient-blue:   linear-gradient(90deg, #0078B8 0%, #009BE5 100%);
+  --gradient-red:    linear-gradient(90deg, #CF3838 0%, #E85050 100%);
+}
+
+/* ── Base styles ─────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings use the prestigious Playfair Display serif */
+h1, h2, h3 {
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+/* Smaller headings, UI labels and metadata retain crisp Inter sans-serif */
+h4, h5, h6 {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
