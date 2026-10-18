@@ -58,43 +58,6 @@ export default function Expertise() {
     };
   }, []);
 
-  const studyTypesList = [
-    'Phase I, II, III and IV trials',
-    'Proof-of-concept & dose-escalation studies',
-    'BA/BE studies',
-    'Thorough QT (TQT) studies',
-    'Stem cell studies',
-    'Pre-clinical programme set-up and post-marketing',
-    '505(b)(2) development',
-  ];
-
-  const therapeuticAreasList = [
-    'Oncology',
-    'Cardiology',
-    'Respiratory medicine',
-    'Haematology',
-    'Gastroenterology',
-    'Musculoskeletal conditions',
-    'Neuropsychiatry',
-    'Immunology',
-    'Dermatology',
-    'Stem cell therapies',
-  ];
-
-  const productsList = [
-    'Biosimilars',
-    'Monoclonal antibodies (mAbs)',
-    'Vaccines',
-    'Generic products',
-    'Stem cell products',
-    'Medical devices',
-    'Oral and injectable routes',
-  ];
-
-  const geographicList = [
-    'Leadership and coordination of teams, investigators, sites and specialist vendors across multiple geographies.',
-  ];
-
   return (
     <section
       ref={sectionRef}
