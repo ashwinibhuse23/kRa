@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 interface SectionTagProps {
   text?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   variant?: 'green' | 'red' | 'blue' | 'white';
   isDark?: boolean;
   className?: string;

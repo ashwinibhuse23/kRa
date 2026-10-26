@@ -1,12 +1,12 @@
-import React from 'react';
+import type { ReactNode, MouseEvent } from 'react';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'red';
 export type ButtonSize = 'sm' | 'compact' | 'md' | 'lg';
 
 export interface ButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   href?: string;
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e: MouseEvent<HTMLElement>) => void;
   type?: 'button' | 'submit' | 'reset';
   variant?: ButtonVariant;
   size?: ButtonSize;
