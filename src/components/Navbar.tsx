@@ -184,7 +184,7 @@ export default function Navbar() {
               <Logo
                 height={84}
                 theme="dark"
-                className="drop-shadow-[0_0_16px_rgba(0,120,184,0.35)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                className="h-14 sm:h-18 lg:h-[84px] drop-shadow-[0_0_16px_rgba(0,120,184,0.35)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               />
             </a>
           </div>

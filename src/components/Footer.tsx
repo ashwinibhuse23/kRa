@@ -42,25 +42,24 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative w-full overflow-hidden bg-[#010814] text-white border-t border-slate-800/80 pt-16 sm:pt-20 pb-10"
-      style={{ fontFamily: 'var(--font-inter)' }}
+      className="relative w-full overflow-hidden bg-[#010814] text-white border-t border-slate-800/80 pt-16 sm:pt-20 pb-10 font-sans"
     >
       {/* ── Ambient Radial Accent ── */}
       <div className="absolute top-0 left-1/3 w-[600px] h-[300px] bg-gradient-to-b from-[#0078B8]/10 to-transparent rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        
+
         {/* ── Top Brand & Navigation Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-slate-800/80">
-          
+
           {/* Brand Presentation (5 Columns) */}
           <div className="lg:col-span-5 space-y-5">
             <div className="flex items-center gap-3">
-              <Logo height={54} theme="dark" />
+              <Logo height={54} theme="dark" className="drop-shadow-[0_0_12px_rgba(0,120,184,0.3)]" />
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <h3 className="text-xl font-bold text-white tracking-tight font-playfair">
                 kRa Life Sciences
               </h3>
               <p className="text-xs sm:text-sm font-semibold text-[#0078B8] leading-snug">
@@ -70,10 +69,7 @@ export default function Footer() {
 
             {/* Brand Motto Callout */}
             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 max-w-md">
-              <p
-                className="text-xs sm:text-sm text-slate-200 italic leading-relaxed"
-                style={{ fontFamily: 'var(--font-playfair)' }}
-              >
+              <p className="text-xs sm:text-sm text-slate-200 italic leading-relaxed font-playfair">
                 &ldquo;Integrated expertise. Operational excellence. Execution with purpose.&rdquo;
               </p>
             </div>
@@ -111,7 +107,7 @@ export default function Footer() {
 
         {/* ── Bottom Copyright, Standards & Back to Top Strip ── */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          
+
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
             <span className="text-slate-400 font-medium">
               &copy; {currentYear} <strong className="text-white font-semibold">kRa Life Sciences</strong>. All rights reserved.

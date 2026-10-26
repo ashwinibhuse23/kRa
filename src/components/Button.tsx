@@ -72,12 +72,11 @@ export default function Button({
   const arrowBadgeBg = {
     primary: 'bg-[#00A8CC]',
     secondary: 'bg-white/20',
-    red: 'bg-[#CF3838]',
+    red: 'bg-[#00A8CC]',
   }[variant];
 
-  const baseClasses = `group inline-flex items-center justify-between rounded-full font-serif font-medium tracking-normal transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none ${
-    fullWidth ? 'w-full' : 'w-auto'
-  } ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${variantStyles} ${sizeStyles} ${className}`;
+  const baseClasses = `group inline-flex items-center justify-between rounded-full font-serif font-medium tracking-normal transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none ${fullWidth ? 'w-full' : 'w-auto'
+    } ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${variantStyles} ${sizeStyles} ${className}`;
 
   const content = (
     <>
@@ -87,7 +86,7 @@ export default function Button({
           className={`${arrowCircleSizes} ${arrowBadgeBg} rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-xs`}
         >
           <svg
-            className={`${arrowIconSizes} text-white group-hover:text-[#CF3838] transition-colors duration-300`}
+            className={`${arrowIconSizes} text-white transition-colors duration-300`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

@@ -108,15 +108,6 @@ export default function PastExperience() {
       id="experience"
       className="relative w-full overflow-hidden py-9 sm:py-11 lg:py-13 border-t border-slate-200/90 font-sans text-slate-900 bg-white"
     >
-      {/* ── Background Image Canvas: pastcollabback.png ── */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
-        <img
-          src="/pastcollabback.png"
-          alt=""
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
-
       <div ref={contentRef} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
 
@@ -124,13 +115,13 @@ export default function PastExperience() {
           <div className="past-narrative lg:col-span-7 xl:col-span-7 flex flex-col justify-center pl-3 sm:pl-5 lg:pl-7 xl:pl-8">
             {/* Top Section Tag */}
             <div>
-              <SectionTag text="Past Collaborations &amp; Experience" variant="red" />
+              <SectionTag text="Past Collaborations &amp; Experience" variant="green" />
             </div>
 
             {/* Main Heading */}
-            <h2 className="mt-1.5 sm:mt-2 mb-3 sm:mb-3.5 text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] font-semibold text-slate-900 tracking-tight leading-[1.24] font-serif">
-              Bringing the Right Expertise Together <br />
-              <span className="bg-gradient-to-r from-[#0078B8] via-[#0094C6] to-[#00A8CC] bg-clip-text text-transparent">
+            <h2 className="mt-1.5 sm:mt-5 mb-3 sm:mb-3.5 text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] font-semibold text-slate-900 tracking-tight leading-[1.28] font-serif">
+              <span className="block">Bringing the Right Expertise Together</span>
+              <span className="block mt-1 sm:mt-1.5 bg-gradient-to-r from-[#0078B8] via-[#0094C6] to-[#00A8CC] bg-clip-text text-transparent">
                 To Deliver Clinical Programmes
               </span>
             </h2>
@@ -142,7 +133,7 @@ export default function PastExperience() {
 
             {/* Paragraph 2 */}
             <p className="text-slate-600 text-xs sm:text-[13px] lg:text-[13.5px] leading-relaxed mb-3">
-              Across previous leadership and consulting engagements, <strong className="font-semibold text-slate-800">Dr. Kavya Appaiah</strong> has worked with and overseen cross-functional teams and vendors covering clinical operations, project management, medical writing, medical monitoring, data management, pharmacovigilance, statistical analysis, clinical reporting, finance and clinical technology.
+              Across previous leadership and consulting engagements, <strong className="font-semibold text-slate-800">Dr. Kavya Kadam</strong> has worked with and overseen cross-functional teams and vendors covering clinical operations, project management, medical writing, medical monitoring, data management, pharmacovigilance, statistical analysis, clinical reporting, finance and clinical technology.
             </p>
 
             {/* Paragraph 3 */}
@@ -169,8 +160,8 @@ export default function PastExperience() {
           </div>
 
           {/* ════ Right Column: Experience Items ════ */}
-          <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-center">
-            <h3 className="font-sans font-bold text-[#002B49] text-xs sm:text-[13.5px] mb-2 sm:mb-2.5 tracking-tight">
+          <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-center pt-2 sm:pt-4 lg:pt-6">
+            <h3 className="font-sans font-bold text-[#002B49] text-xs sm:text-[13.5px] mb-3 sm:mb-4 tracking-tight mt-2 sm:mt-3">
               Areas of prior experience include:
             </h3>
 

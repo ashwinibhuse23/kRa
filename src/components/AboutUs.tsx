@@ -16,7 +16,7 @@ export default function AboutUs() {
   const videoCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {}, sectionRef);
+    const ctx = gsap.context(() => { }, sectionRef);
 
     // ── Part 1 ("About kRa Life Sciences") Slow Modern Entrance Animation ──
     const part1Observer = new IntersectionObserver(
@@ -368,19 +368,19 @@ export default function AboutUs() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* ── Left Column: Story, Title & Narrative ── */}
-            <div className="lg:col-span-6 xl:col-span-6 pl-2 sm:pl-4 lg:pl-6 xl:pl-3">
-              {/* Red Tagline Prefix */}
+            <div className="lg:col-span-7 xl:col-span-7 pl-1 sm:pl-2 lg:pl-3 xl:pl-1">
+              {/* Tagline Prefix */}
               <div ref={tagRef}>
-                <SectionTag text="About kRa Life Sciences" variant="red" className="mb-3.5" />
+                <SectionTag text="About kRa Life Sciences" variant="green" isDark={true} className="mb-3.5 sm:mb-4" />
               </div>
 
               {/* Main Headline (2 Lines) */}
               <h2
                 ref={headlineRef}
-                className="font-serif text-2xl sm:text-3xl lg:text-[34px] xl:text-[36px] font-semibold tracking-tight leading-[1.2] mb-3.5 sm:mb-4"
+                className="mt-0.5 sm:mt-2.4 font-serif text-2xl sm:text-3xl lg:text-[34px] xl:text-[36px] font-semibold tracking-tight leading-[1.2] mb-3.5 sm:mb-6"
               >
-                <span className="about-headline-line block text-white">Connecting Clinical Expertise</span>
-                <span className="about-headline-line block text-[#38BDF8]">
+                <span className="about-headline-line block text-white">Global Clinical Trial Consultant</span>
+                <span className="about-headline-line block bg-gradient-to-r from-[#0078B8] via-[#009BE5] to-[#00A8CC] bg-clip-text text-transparent">
                   <span className="inline-block pl-1 sm:pl-1.5">With</span> Execution Excellence
                 </span>
               </h2>
@@ -388,25 +388,16 @@ export default function AboutUs() {
               {/* Paragraph Text in Dark Theme */}
               <div
                 ref={paragraphsRef}
-                className="space-y-2.5 sm:space-y-3 text-slate-300 text-[13px] sm:text-[13.5px] lg:text-[14px] leading-[1.6]"
+                className="space-y-3 sm:space-y-3.5 text-slate-300 text-[14px] sm:text-[14.5px] lg:text-[15px] leading-[1.68] sm:leading-[1.7] max-w-none lg:max-w-2xl xl:max-w-[650px]"
               >
                 <p className="about-paragraph">
-                  Clinical trials require more than sound protocols and capable teams, They demand meticulous
-                  planning, coordinated execution, proactive risk management and a shared commitment to study
-                  objectives.
+                  With consultancy experience since 2018, the vision behind kRa Life Sciences is to address critical gaps in clinical development by bringing all aspects of clinical trials together under one roof. The consultancy provides end-to-end clinical trial and development solutions, focusing on seamless collaboration, effective execution, and quality-driven outcomes to help pharmaceutical companies achieve their project objectives while prioritizing patient needs and accelerating product development.
                 </p>
                 <p className="about-paragraph">
-                  Founded by <strong className="font-semibold text-white">Dr. Kavya Appaiah</strong>,{' '}
-                  <strong className="font-semibold text-white">kRa Life Sciences</strong> builds on extensive
-                  experience in clinical research, clinical operations, project management and organisational
-                  development. Established in 2018 as an individual consultancy, the practice evolved into kRa Life
-                  Sciences to address a critical need in clinical development: a single point of coordination
-                  across functions, with a clear focus on translating plans into execution.
+                  An eMBA has broadened the consultancy's expertise beyond clinical trials, bringing a deeper understanding of financial management, organizational strategy, and business operations. This integrated perspective helps connect clinical development goals with business priorities, enabling organizations to make informed decisions and improve overall efficiency.
                 </p>
                 <p className="about-paragraph">
-                  We work across the clinical development lifecycle, bringing together the right expertise,
-                  processes and teams to address operational gaps, strengthen accountability and support
-                  quality-driven, timeline-conscious and cost-aware trial delivery.
+                  kRa Life Sciences supports organizations in designing and restructuring organizational hierarchies, aligning teams with efficient process flows, and strengthening cross-functional collaboration. Through process optimization and operational excellence, the consultancy helps streamline workflows, improve execution, and align organizational capabilities with strategic business goals.
                 </p>
               </div>
 
@@ -415,7 +406,7 @@ export default function AboutUs() {
                 <div className="inline-flex items-center gap-3.5 group">
                   <img
                     src="/kavya-portrait.jpg"
-                    alt="Dr. Kavya Appaiah Founder"
+                    alt="Dr. Kavya Kadam Founder"
                     className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white/20 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="text-left">
@@ -423,7 +414,7 @@ export default function AboutUs() {
                       FOUNDED BY
                     </span>
                     <span className="font-serif font-bold text-white text-[15px] sm:text-[16px] leading-tight block">
-                      Dr. Kavya Appaiah
+                      Dr. Kavya Kadam
                     </span>
                   </div>
                 </div>
@@ -431,7 +422,7 @@ export default function AboutUs() {
             </div>
 
             {/* ── Right Column: Interactive Video Card ── */}
-            <div className="lg:col-span-6 xl:col-span-6 pr-2 sm:pr-3 lg:pr-3.5 xl:pr-4">
+            <div className="lg:col-span-5 xl:col-span-5 pr-2 sm:pr-3 lg:pr-3.5 xl:pr-4">
               <div className="flex flex-col items-center lg:items-end w-full">
                 {/* Main Feature / Video Card with aboutvideo.mp4 */}
                 <div
@@ -469,11 +460,8 @@ export default function AboutUs() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Section Header: Tag followed directly by explanatory content */}
           <div className="approach-header-item mb-6 sm:mb-7 lg:mb-8 max-w-3xl pl-2 sm:pl-4 lg:pl-6 xl:pl-4">
-            <div className="flex items-center gap-2 text-xs sm:text-[13px] font-bold text-[#CF3838] tracking-widest uppercase mb-1.5 sm:mb-2">
-              <span className="w-5 sm:w-6 h-0.5 bg-[#CF3838]" />
-              <span>OUR APPROACH</span>
-            </div>
-            <p className="text-sm sm:text-[15px] lg:text-[16px] text-slate-200 leading-[1.6] font-sans">
+            <SectionTag text="Our Approach" variant="green" isDark={true} className="mb-1.5 sm:mb-2" />
+            <p className="text-sm sm:text-[15px] lg:text-[16px] text-slate-200 leading-[1.6] font-sans mt-3">
               Our approach combines medical understanding, operational rigour and business insight to align
               sponsor expectations with investigator and site realities.
             </p>
@@ -512,11 +500,10 @@ export default function AboutUs() {
 
                     {/* Dark Sleek Information Card (No Overlap, Compact Height) */}
                     <div
-                      className={`w-full h-full bg-[#0D1C33]/90 hover:bg-[#112440] rounded-2xl sm:rounded-3xl pt-13 sm:pt-14 pb-3.5 sm:pb-4 px-3 sm:px-3.5 text-center border shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between backdrop-blur-md ${
-                        isSelected
-                          ? 'border-[#0078B8] shadow-sky-950/50 -translate-y-1'
-                          : 'border-slate-700/60 hover:border-slate-600/80 hover:-translate-y-0.5'
-                      }`}
+                      className={`w-full h-full bg-[#0D1C33]/90 hover:bg-[#112440] rounded-2xl sm:rounded-3xl pt-13 sm:pt-14 pb-3.5 sm:pb-4 px-3 sm:px-3.5 text-center border shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between backdrop-blur-md ${isSelected
+                        ? 'border-[#0078B8] shadow-sky-950/50 -translate-y-1'
+                        : 'border-slate-700/60 hover:border-slate-600/80 hover:-translate-y-0.5'
+                        }`}
                     >
                       {/* Title & Description */}
                       <div className="flex-1 flex flex-col justify-start">

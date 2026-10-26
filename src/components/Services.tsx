@@ -345,7 +345,7 @@ export default function Services() {
           {/* Left Column: Tag, Heading & Paragraph */}
           <div className="lg:col-span-7 xl:col-span-7 pl-1 sm:pl-2 lg:pl-3 xl:pl-4">
             <div className="services-header-tag mb-3.5">
-              <SectionTag text="Our Services" variant="red" />
+              <SectionTag text="Our Services" variant="green" />
             </div>
             <h2 className="services-header-title font-sans text-2xl sm:text-3xl lg:text-[33px] xl:text-[36px] font-extrabold text-[#0a192f] tracking-tight leading-[1.2] mb-3.5">
               <span className="block">End-to-End Clinical Trial Consulting</span>
@@ -391,19 +391,17 @@ export default function Services() {
                   key={service.id}
                   type="button"
                   onClick={() => handleServiceSelect(idx)}
-                  className={`service-tab-pill w-full flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-[11.5px] lg:text-[11.5px] xl:text-[12.5px] font-semibold transition-all duration-200 cursor-pointer text-left ${
-                    isActive
-                      ? 'bg-[#002B49] text-white shadow-md shadow-sky-950/20 ring-1 ring-[#002B49]'
-                      : 'bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 shadow-sm border border-slate-200/90 hover:border-slate-300'
-                  }`}
+                  className={`service-tab-pill w-full flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-[11.5px] lg:text-[11.5px] xl:text-[12.5px] font-semibold transition-all duration-200 cursor-pointer text-left ${isActive
+                    ? 'bg-[#084D3E] text-white shadow-md shadow-[#084D3E]/20 ring-1 ring-[#084D3E]'
+                    : 'bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 shadow-sm border border-slate-200/80 hover:border-slate-300'
+                    }`}
                 >
                   {/* Circular Icon Badge */}
                   <div
-                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                      isActive
-                        ? 'bg-[#0088CC] text-white shadow-sm'
-                        : 'bg-sky-50 text-[#0078B8] border border-sky-100/90'
-                    }`}
+                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive
+                      ? 'bg-[#00A896] text-white shadow-sm'
+                      : 'bg-[#EEF7FC] text-[#0088CC] border border-sky-100/90'
+                      }`}
                   >
                     {getServiceIcon(service.id, isActive)}
                   </div>
@@ -416,7 +414,7 @@ export default function Services() {
                   {/* Up-Right Arrow on Active Tab */}
                   {isActive && (
                     <svg
-                      className="w-3.5 h-3.5 text-[#38BDF8] shrink-0 mr-0.5 hidden xl:block"
+                      className="w-3.5 h-3.5 text-[#2DD4BF] shrink-0 mr-0.5"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"

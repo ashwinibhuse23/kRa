@@ -75,18 +75,18 @@ export default function Expertise() {
         {/* ── Header Area: Left Text Content ── */}
         <div className="exp-header-text max-w-3xl mb-8 sm:mb-10 relative z-10">
           <div>
-            <SectionTag text="Experience &amp; Therapeutic Expertise" variant="red" />
+            <SectionTag text="Experience &amp; Therapeutic Expertise" variant="green" />
           </div>
 
-          <h2 className="mt-1.5 sm:mt-2 mb-2.5 sm:mb-3 text-xl sm:text-2xl lg:text-[30px] xl:text-[33px] font-semibold text-slate-900 tracking-tight leading-[1.24] font-serif">
-            Broad Clinical Research Experience <br />
-            <span className="bg-gradient-to-r from-[#0078B8] via-[#0094C6] to-[#00A8CC] bg-clip-text text-transparent">
+          <h2 className="mt-5 sm:mt-6 mb-2.5 sm:mb-3 text-xl sm:text-2xl lg:text-[30px] xl:text-[33px] font-semibold text-slate-900 tracking-tight leading-[1.28] font-serif">
+            <span className="block">Broad Clinical Research Experience</span>
+            <span className="block mt-1 sm:mt-1.5 bg-gradient-to-r from-[#0078B8] via-[#0094C6] to-[#00A8CC] bg-clip-text text-transparent">
               Across Study Types and Product Categories
             </span>
           </h2>
 
           <p className="mt-2 sm:mt-2.5 text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-            Dr. Kavya Appaiah&apos;s experience spans multiple clinical research settings, study phases, therapeutic areas and product categories.
+            Dr. Kavya Kadam&apos;s experience spans multiple clinical research settings, study phases, therapeutic areas and product categories.
           </p>
         </div>
 

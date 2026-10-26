@@ -147,7 +147,8 @@ export default function WhyKra() {
         <div className="why-tag-reveal mb-3.5 sm:mb-4">
           <SectionTag
             text="Why kRa Life Sciences"
-            variant="red"
+            variant="green"
+            isDark={true}
           />
         </div>
 

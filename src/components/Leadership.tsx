@@ -161,13 +161,13 @@ export default function Leadership() {
           <div className="lg:col-span-7 xl:col-span-7 pl-3 sm:pl-5 lg:pl-4">
             {/* Tag: FOUNDER & LEADERSHIP using SectionTag */}
             <div className="leadership-tag mb-2.5 sm:mb-3">
-              <SectionTag text="Founder & Leadership" variant="red" />
+              <SectionTag text="Founder & Leadership" variant="green" isDark={true} />
             </div>
 
-            {/* Executive Headline: Dr. Kavya Appaiah in elegant Playfair serif */}
+            {/* Executive Headline: Dr. Kavya Kadam in elegant Playfair serif */}
             <div className="mb-3 sm:mb-4">
               <h2 className="leadership-title text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-bold text-white tracking-tight leading-[1.15] mb-3 sm:mb-3.5 font-serif">
-                Dr. Kavya Appaiah
+                Dr. Kavya Kadam
               </h2>
 
               <p className="leadership-subtitle text-xs sm:text-sm lg:text-[15px] font-medium text-sky-400 font-sans tracking-wide">
@@ -178,7 +178,7 @@ export default function Leadership() {
             {/* Bio Narrative & Credentials: Smooth staggered cascade */}
             <div className="w-full max-w-[710px] space-y-2.5">
               <p className="leadership-para text-slate-200 text-sm sm:text-[14.5px] lg:text-[15px] leading-relaxed font-sans font-normal">
-                Dr. Kavya Appaiah is a medically qualified clinical research professional with over 20 years of experience across clinical operations, clinical trial management, project leadership and product development.
+                Dr. Kavya Kadam is a medically qualified clinical research professional with over 20 years of experience across clinical operations, clinical trial management, project leadership and product development.
               </p>
 
               <p className="leadership-para text-slate-300 text-[13px] sm:text-[13.5px] lg:text-[14px] leading-relaxed font-sans">
@@ -200,7 +200,7 @@ export default function Leadership() {
             </div>
           </div>
 
-          {/* Right Column: Clean Dr. Kavya Appaiah Portrait on Dark Navy Background ── */}
+          {/* Right Column: Clean Dr. Kavya Kadam Portrait on Dark Navy Background ── */}
           <div className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end items-center">
             <div className="leadership-portrait relative group">
               {/* Subtle ambient back-glow behind portrait */}
@@ -209,7 +209,7 @@ export default function Leadership() {
               <div className="relative rounded-2xl overflow-hidden border border-sky-500/20 shadow-[0_15px_40px_rgba(0,10,25,0.7)] bg-[#020B18]">
                 <img
                   src="/kavya-leader.jpg"
-                  alt="Dr. Kavya Appaiah - Founder & Leadership"
+                  alt="Dr. Kavya Kadam - Founder & Leadership"
                   className="w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[395px] xl:max-w-[420px] h-auto object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 />
 

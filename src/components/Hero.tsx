@@ -166,10 +166,10 @@ export default function Hero() {
           {/* Subheading lines */}
           <div ref={subheadingsRef} className="mb-5 space-y-0.5">
             <p className="text-xl sm:text-2xl lg:text-[27px] font-light text-slate-100 tracking-tight leading-snug">
-              One Partner. Connected Teams.
+             Clinical Trials That Move Forward.
             </p>
             <p className="text-xl sm:text-2xl lg:text-[27px] font-medium text-white tracking-tight leading-snug">
-              Clinical Trials That Move Forward.
+             Walking With You to Project Completion
             </p>
           </div>
 
