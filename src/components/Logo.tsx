@@ -40,7 +40,7 @@ export default function Logo({
       alt={alt}
       loading="eager"
       decoding="async"
-      className={`w-auto object-contain transition-all duration-300 select-none ${heightClass} ${
+      className={`w-auto object-contain transition-all duration-300 select-none pl-1.5 ${heightClass} ${
         theme === 'light' ? 'brightness-0 contrast-200' : ''
       } ${className}`}
     />
