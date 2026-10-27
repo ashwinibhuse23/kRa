@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import SectionTag from './SectionTag';
-import Button from './Button';
 
 interface ServiceItem {
   id: string;
@@ -12,7 +11,6 @@ interface ServiceItem {
   summary: string;
   bullets: string[];
   img: string;
-  focusNote?: string;
 }
 
 const getServiceIcon = (id: string, isActive: boolean) => {
@@ -164,8 +162,6 @@ export default function Services() {
       summary:
         'Bringing multiple functions and specialist providers together under a coordinated execution framework across the full lifecycle.',
       img: '/cross.png',
-      focusNote:
-        'Ensuring that responsibilities, dependencies, timelines and deliverables are connected across teams, rather than managed in isolation.',
       bullets: [
         'Clinical protocol development and medical writing',
         'Medical monitoring and safety inputs',
@@ -243,12 +239,12 @@ export default function Services() {
                 0.35
               );
 
-              // 5. Right Corner Showcase Image: Modern floating 3D scale and soft glow reveal
+              // 5. Header Background Graphic: Subtle depth entrance
               tl.fromTo(
-                '.services-header-image',
-                { opacity: 0, y: 35, scale: 0.93, filter: 'blur(10px)' },
-                { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.6, ease: 'power3.out', clearProps: 'all' },
-                0.25
+                '.services-bg-graphic',
+                { opacity: 0, x: 30, scale: 0.97, filter: 'blur(8px)' },
+                { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)', duration: 1.8, ease: 'power3.out', clearProps: 'all' },
+                0.2
               );
 
               // 6. Top Divider Line: Elegant center-out horizontal line expansion
@@ -291,14 +287,6 @@ export default function Services() {
                 { opacity: 1, x: 0, duration: 0.9, stagger: 0.05, ease: 'power2.out', clearProps: 'all' },
                 1.05
               );
-
-              // 10. Bottom CTA Block: Graceful upward arrival
-              tl.fromTo(
-                '.services-cta-reveal',
-                { opacity: 0, y: 25, filter: 'blur(6px)' },
-                { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.3, ease: 'power3.out', clearProps: 'all' },
-                1.2
-              );
             }, sectionRef);
 
             observer.disconnect();
@@ -335,46 +323,45 @@ export default function Services() {
       id="services"
       className="relative w-full overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F3F8FC] to-[#F8FAFC] pt-12 sm:pt-14 lg:pt-16 pb-10 sm:pb-12 lg:pb-14 border-t border-slate-200/80 font-sans"
     >
+      {/* ── Background Image (serviceback.png) ── */}
+      <div className="services-bg-graphic absolute top-0 right-0 w-full sm:w-[88%] md:w-[78%] lg:w-[66%] xl:w-[61%] h-[390px] sm:h-[415px] lg:h-[440px] pointer-events-none select-none overflow-hidden will-change-transform">
+        <img
+          src="/serviceback.png"
+          alt="Clinical Trial Consulting Services"
+          className="w-full h-full object-cover object-right scale-100 origin-right"
+        />
+        {/* Soft edge blend on the left so it seamlessly fades into the section background */}
+        <div className="absolute inset-y-0 left-0 w-32 sm:w-44 lg:w-60 bg-gradient-to-r from-[#F8FAFC] via-[#F8FAFC]/80 to-transparent pointer-events-none" />
+        {/* Soft bottom blend to transition smoothly into the tabs */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/90 to-transparent pointer-events-none" />
+        {/* Mobile/Tablet readability gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F8FAFC] via-[#F8FAFC]/90 to-transparent sm:hidden pointer-events-none" />
+      </div>
+
       {/* ── Ambient Background Accents ── */}
       <div className="services-ambient-glow absolute top-10 right-1/4 w-96 h-96 bg-sky-200/20 rounded-full blur-3xl pointer-events-none" />
       <div className="services-ambient-glow absolute bottom-10 left-10 w-96 h-96 bg-blue-100/25 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* ── Section Header (Text on Left, services.png on Right Corner) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center mb-8 sm:mb-10">
-          {/* Left Column: Tag, Heading & Paragraph */}
-          <div className="lg:col-span-7 xl:col-span-7 pl-1 sm:pl-2 lg:pl-3 xl:pl-4">
+        {/* ── Section Header (Text on Left, serviceback.png shines through on Right) ── */}
+        <div className="relative mb-12 sm:mb-14 lg:mb-16">
+          <div className="max-w-xl lg:max-w-[60%] xl:max-w-[48%] pl-1 sm:pl-2 lg:pl-3 xl:pl-4 pr-2 sm:pr-3 lg:pr-4">
             <div className="services-header-tag mb-3.5">
               <SectionTag text="Our Services" variant="green" />
             </div>
-            <h2 className="services-header-title font-sans text-2xl sm:text-3xl lg:text-[33px] xl:text-[36px] font-extrabold text-[#0a192f] tracking-tight leading-[1.2] mb-3.5">
-              <span className="block">End-to-End Clinical Trial Consulting</span>
-              <span className="block">
+            <h2 className="services-header-title text-xl sm:text-[29px] md:text-[33px] lg:text-[37px] xl:text-[41px] font-bold text-[#0a192f] tracking-tight leading-[1.2] mb-3 sm:mb-3.5 pr-1.5 sm:pr-2.5">
+              <span className="block sm:whitespace-nowrap">End-to-End Clinical Trial Consulting</span>
+              <span className="block sm:whitespace-nowrap">
                 <span className="bg-gradient-to-r from-[#0078B8] via-[#009BE5] to-[#00A8CC] bg-clip-text text-transparent">
                   And Clinical Development Solutions
                 </span>
               </span>
             </h2>
-            <p className="services-header-desc text-slate-600 text-sm sm:text-[15.5px] lg:text-[16px] leading-[1.65] font-sans max-w-2xl">
+            <p className="services-header-desc text-slate-600 text-sm sm:text-[15.5px] lg:text-[16px] leading-[1.65] font-sans max-w-xl mt-6 sm:mt-6">
               <strong className="font-semibold text-[#002B49]">kRa Life Sciences</strong> provides strategic
               and operational consulting across clinical development, helping sponsors and research organisations
               plan, coordinate and execute complex programmes.
             </p>
-          </div>
-
-          {/* Right Column: services.png Showcase */}
-          <div className="services-header-image lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end pr-1.5 sm:pr-2.5 lg:pr-4 xl:pr-5.5">
-            <div className="relative group w-full max-w-md lg:max-w-[420px] xl:max-w-[450px]">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#0078B8]/20 via-[#00A8CC]/20 to-sky-400/20 rounded-2xl blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none" />
-              <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-lg shadow-sky-950/5 h-44 sm:h-48 lg:h-[205px] xl:h-[215px] w-full">
-                <img
-                  src="/services.png"
-                  alt="kRa Life Sciences Clinical Development & Consulting Services"
-                  className="w-full h-full object-cover object-[center_38%] group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/15 via-transparent to-transparent pointer-events-none" />
-              </div>
-            </div>
           </div>
         </div>
 
@@ -488,46 +475,6 @@ export default function Services() {
                   ))}
                 </div>
               </div>
-
-              {/* Specific Focus Note Callout (For Service 05) */}
-              {currentService.focusNote && (
-                <div className="mt-5 p-3 sm:p-3.5 rounded-xl bg-sky-50/80 border border-sky-100 text-[12px] sm:text-[12.5px] leading-relaxed text-slate-800 flex items-start gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#0078B8] mt-1.5 shrink-0" />
-                  <p>
-                    <strong className="font-semibold text-[#002B49]">Our focus:</strong>{' '}
-                    {currentService.focusNote}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Subtle Divider Line ── */}
-        <div className="w-full h-px bg-slate-200/80 mb-5 sm:mb-6" />
-
-        {/* ── Tailored Programme Engagement & Scope CTA (Section-Integrated Design - No Background Card) ── */}
-        <div className="services-cta-reveal w-full pl-1 sm:pl-2 lg:pl-3.5 xl:pl-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-center justify-between">
-            {/* Left Content Area (Spans 8 columns) */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-3">
-              <h3 className="font-sans text-2xl sm:text-3xl lg:text-[32px] font-extrabold text-[#0a192f] tracking-tight leading-[1.2]">
-                Aligning Clinical Expertise with{' '}
-                <span className="bg-gradient-to-r from-[#0078B8] via-[#009BE5] to-[#00A8CC] bg-clip-text text-transparent">
-                  Execution Needs
-                </span>
-              </h3>
-
-              <p className="text-slate-600 text-sm sm:text-[15px] lg:text-[16px] leading-[1.65] font-sans max-w-2xl">
-                Specific services are scoped according to programme requirements and may be delivered directly or coordinated with specialist partners, as applicable.
-              </p>
-            </div>
-
-            {/* Right Action Area (Spans 4 columns) */}
-            <div className="lg:col-span-4 xl:col-span-4 flex justify-start lg:justify-end shrink-0 pt-2 lg:pt-0 pr-1.5 sm:pr-2.5 lg:pr-4 xl:pr-12">
-              <Button href="#contact" size="md" variant="primary">
-                Discuss Your Programme Scope
-              </Button>
             </div>
           </div>
         </div>
