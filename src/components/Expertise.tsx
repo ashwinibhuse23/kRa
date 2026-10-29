@@ -75,7 +75,7 @@ export default function Expertise() {
         {/* ── Header Area: Left Text Content ── */}
         <div className="exp-header-text max-w-3xl mb-8 sm:mb-10 relative z-10">
           <div>
-            <SectionTag text="Experience &amp; Therapeutic Expertise" variant="green" />
+            <SectionTag text=" Our Experience &amp;  Expertise" variant="green" />
           </div>
 
           <h2 className="mt-5 sm:mt-6 mb-2.5 sm:mb-3 text-xl sm:text-2xl lg:text-[30px] xl:text-[33px] font-semibold text-slate-900 tracking-tight leading-[1.28] font-serif">
@@ -86,7 +86,7 @@ export default function Expertise() {
           </h2>
 
           <p className="mt-2 sm:mt-2.5 text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-            Dr. Kavya Kadam&apos;s experience spans multiple clinical research settings, study phases, therapeutic areas and product categories.
+            Our experience spans multiple clinical research settings, study phases, therapeutic areas and product categories.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function Expertise() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4.5 lg:gap-4 xl:gap-5 items-stretch relative z-10">
 
             {/* ════ Card 1: Study Types (Blue Theme) ════ */}
-            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-0">
+            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-3 sm:pb-3.5 lg:pb-0 w-full max-w-[340px] min-[390px]:max-w-[360px] sm:max-w-[420px] md:max-w-none mx-auto">
               {/* Top-Left Curved Blue Corner Wave (Slightly reduced compact size) */}
               <div className="absolute top-0 left-0 w-[46px] h-[46px] bg-gradient-to-br from-[#0078B8] to-[#0284C7] rounded-br-[22px] pointer-events-none" />
 
@@ -194,7 +194,7 @@ export default function Expertise() {
                   </div>
 
                   {/* 7. 505(b)(2) development */}
-                  <div className="flex items-center gap-2 py-0.5 group/item">
+                  <div className="flex items-center gap-2 py-0.5 border-b border-slate-100/80 group/item">
                     <div className="w-4.5 h-4.5 rounded-full bg-sky-50 text-[#0078B8] flex items-center justify-center shrink-0 group-hover/item:bg-[#0078B8] group-hover/item:text-white transition-all">
                       <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -204,23 +204,35 @@ export default function Expertise() {
                       505(b)(2) development
                     </span>
                   </div>
+
+                  {/* 8. Biologics */}
+                  <div className="flex items-center gap-2 py-0.5 group/item">
+                    <div className="w-4.5 h-4.5 rounded-full bg-sky-50 text-[#0078B8] flex items-center justify-center shrink-0 group-hover/item:bg-[#0078B8] group-hover/item:text-white transition-all">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                    </div>
+                    <span className="text-[11.5px] font-medium text-slate-700 leading-tight group-hover/item:text-slate-900 transition-colors">
+                      Biologics
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Bottom Visual Wave: Clinical Stethoscope & Study Papers */}
-              <div className="relative mt-2.5 -mx-4 h-20 sm:h-24 overflow-hidden rounded-b-2xl">
+              <div className="relative mt-2.5 mb-1 lg:mb-0 mx-auto w-[90%] min-[390px]:w-[88%] sm:w-[88%] lg:w-auto lg:mx-0 lg:-mx-4 h-32 min-[390px]:h-36 sm:h-38 lg:h-24 overflow-hidden rounded-xl lg:rounded-b-2xl lg:rounded-t-none border border-slate-100 lg:border-none shadow-2xs lg:shadow-none">
                 <img
                   src="/card-stethoscope.jpg"
                   alt="Clinical Trial Protocol Stethoscope"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_35%] lg:object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 h-4 bg-gradient-to-t from-sky-500/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/30 lg:to-white pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-3 lg:h-4 bg-gradient-to-t from-sky-500/10 to-transparent pointer-events-none" />
               </div>
             </div>
 
             {/* ════ Card 2: Therapeutic Areas (Red Theme) ════ */}
-            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-rose-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-0">
+            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-rose-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-3 sm:pb-3.5 lg:pb-0 w-full max-w-[340px] min-[390px]:max-w-[360px] sm:max-w-[420px] md:max-w-none mx-auto">
               {/* Top-Left Curved Red Corner Wave (Slightly reduced compact size) */}
               <div className="absolute top-0 left-0 w-[46px] h-[46px] bg-gradient-to-br from-[#CF3838] to-[#E63946] rounded-br-[22px] pointer-events-none" />
 
@@ -251,6 +263,7 @@ export default function Expertise() {
                     { label: 'Neuropsychiatry', icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' },
                     { label: 'Immunology', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
                     { label: 'Dermatology', icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01' },
+                    { label: 'Endocrinology', icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4' },
                     { label: 'Stem cell therapies', icon: 'M12 8a3 3 0 100-6 3 3 0 000 6zm-7 9a3 3 0 100-6 3 3 0 000 6zm14 0a3 3 0 100-6 3 3 0 000 6z' },
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 py-0.5 border-b border-slate-100/70 last:border-0 group/item">
@@ -268,19 +281,19 @@ export default function Expertise() {
               </div>
 
               {/* Bottom Visual Wave: 3D DNA Helix */}
-              <div className="relative mt-2.5 -mx-4 h-16 sm:h-20 overflow-hidden rounded-b-2xl">
+              <div className="relative mt-2.5 mb-1 lg:mb-0 mx-auto w-[90%] min-[390px]:w-[88%] sm:w-[88%] lg:w-auto lg:mx-0 lg:-mx-4 h-28 min-[390px]:h-32 sm:h-34 lg:h-20 overflow-hidden rounded-xl lg:rounded-b-2xl lg:rounded-t-none border border-slate-100 lg:border-none shadow-2xs lg:shadow-none">
                 <img
                   src="/card-dna.jpg"
                   alt="DNA Double Helix"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 h-4 bg-gradient-to-t from-rose-500/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/30 lg:to-white pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-3 lg:h-4 bg-gradient-to-t from-rose-500/10 to-transparent pointer-events-none" />
               </div>
             </div>
 
             {/* ════ Card 3: Product & Technology (Blue Theme) ════ */}
-            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-0">
+            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-3 sm:pb-3.5 lg:pb-0 w-full max-w-[340px] min-[390px]:max-w-[360px] sm:max-w-[420px] md:max-w-none mx-auto">
               {/* Top-Left Curved Blue Corner Wave (Slightly reduced compact size) */}
               <div className="absolute top-0 left-0 w-[46px] h-[46px] bg-gradient-to-br from-[#0078B8] to-[#0284C7] rounded-br-[22px] pointer-events-none" />
 
@@ -325,19 +338,19 @@ export default function Expertise() {
               </div>
 
               {/* Bottom Visual Wave: Sterile Vaccine Vial & Syringe */}
-              <div className="relative mt-2.5 -mx-4 h-20 sm:h-24 overflow-hidden rounded-b-2xl">
+              <div className="relative mt-2.5 mb-1 lg:mb-0 mx-auto w-[90%] min-[390px]:w-[88%] sm:w-[88%] lg:w-auto lg:mx-0 lg:-mx-4 h-32 min-[390px]:h-36 sm:h-38 lg:h-24 overflow-hidden rounded-xl lg:rounded-b-2xl lg:rounded-t-none border border-slate-100 lg:border-none shadow-2xs lg:shadow-none">
                 <img
                   src="/card-vial.jpg"
                   alt="Pharmaceutical Vaccine Vial"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 h-4 bg-gradient-to-t from-sky-500/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/30 lg:to-white pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-3 lg:h-4 bg-gradient-to-t from-sky-500/10 to-transparent pointer-events-none" />
               </div>
             </div>
 
             {/* ════ Card 4: Geographic & Functional (Red Theme - Proportionate Height) ════ */}
-            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-rose-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-0">
+            <div className="exp-col-card group relative flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-rose-300 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden pt-3.5 px-4 pb-3 sm:pb-3.5 lg:pb-0 w-full max-w-[340px] min-[390px]:max-w-[360px] sm:max-w-[420px] md:max-w-none mx-auto">
               {/* Top-Left Curved Red Corner Wave (Slightly reduced compact size) */}
               <div className="absolute top-0 left-0 w-[46px] h-[46px] bg-gradient-to-br from-[#CF3838] to-[#E63946] rounded-br-[22px] pointer-events-none" />
 
@@ -372,17 +385,17 @@ export default function Expertise() {
                 </div>
               </div>
 
-              {/* Bottom Visual Wave: Dotted World Map */}
-              <div className="relative mt-3 -mx-4 h-44 sm:h-48 lg:h-52 overflow-hidden rounded-b-2xl bg-gradient-to-b from-white via-rose-50/20 to-rose-50/40 flex items-center justify-center px-1">
+              {/* Bottom Visual Wave: Global Multidisciplinary Team Network */}
+              <div className="relative mt-3 mb-1 lg:mb-0 mx-auto w-[90%] min-[390px]:w-[88%] sm:w-[88%] lg:w-auto lg:mx-0 lg:-mx-4 h-48 sm:h-52 lg:h-56 overflow-hidden rounded-xl lg:rounded-b-2xl lg:rounded-t-none bg-gradient-to-b from-white via-rose-50/20 to-rose-50/30 flex items-center justify-center p-2 border border-rose-100/60 lg:border-none shadow-2xs lg:shadow-none">
                 <img
-                  src="/card-world-map.jpg"
-                  alt="Global Clinical Trial Logistics Network"
+                  src="/card-global-network.png"
+                  alt="Global Clinical Trial & Multidisciplinary Team Network"
                   className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Subtle top dissolve */}
                 <div className="absolute inset-x-0 top-0 h-4 bg-gradient-to-b from-white to-transparent pointer-events-none" />
                 {/* Bottom subtle brand glow */}
-                <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-rose-500/15 via-rose-500/5 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-rose-500/10 via-rose-500/5 to-transparent pointer-events-none" />
                 {/* Global Network Badge */}
                 <div className="absolute bottom-2 left-3 z-10 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-xs border border-rose-200/90 shadow-2xs pointer-events-none">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#CF3838] animate-pulse" />

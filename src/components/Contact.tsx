@@ -186,19 +186,16 @@ export default function Contact() {
             <SectionTag text="Let's Connect" variant="green" className="mb-4" />
           </div>
 
-          <h2 className="contact-title text-2xl sm:text-3xl lg:text-[40px] xl:text-[42px] font-bold text-slate-900 tracking-tight leading-[1.2] mb-4 sm:mb-5 font-serif">
+          <h2 className="contact-title text-2xl sm:text-3xl lg:text-[38px] xl:text-[40px] font-bold text-slate-900 tracking-tight leading-[1.2] mb-4 sm:mb-5 font-serif">
             Have a Clinical Development <br />
             <span className="bg-gradient-to-r from-[#0078B8] via-[#0094C6] to-[#00A8CC] bg-clip-text text-transparent">
               Programme to Plan or Deliver?
             </span>
           </h2>
 
-          <p className="contact-desc text-slate-600 text-sm sm:text-[15px] lg:text-base leading-relaxed mb-3">
-            Whether you are planning a new clinical trial, strengthening clinical operations, addressing recruitment challenges or seeking better coordination across multiple teams and vendors,{' '}
-            <strong className="text-slate-900 font-semibold">kRa Life Sciences</strong> can help you define the priorities and build a practical path to execution.
-          </p>
+         
 
-          <p className="contact-subtext text-[#0078B8] font-semibold text-sm sm:text-[15px] lg:text-base lg:whitespace-nowrap">
+          <p className="contact-subtext font-semibold text-sm sm:text-[15px] lg:text-base lg:whitespace-nowrap">
             Let&apos;s discuss your programme objectives, operational challenges and clinical development requirements.
           </p>
         </div>
@@ -211,16 +208,12 @@ export default function Contact() {
             <div className="contact-card-left relative rounded-3xl p-7 sm:p-8 bg-white border border-slate-200/90 shadow-[0_10px_35px_rgba(0,40,80,0.06)] overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#0078B8] via-[#00A8CC] to-[#38BDF8]" />
 
-              <div className="mb-6">
-                <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-sky-50 text-[#0078B8] border border-sky-200/80 inline-block mb-3">
+              <div className="mb-6 pt-1.5 sm:pt-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 leading-tight">
                   Contact kRa Life Sciences
-                </span>
-
-                <h3 className="text-2xl font-bold text-slate-900 leading-tight">
-                  Dr. Kavya Kadam
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#0078B8] mt-1">
-                  Founder & Principal Clinical Consultant
+                <p className="text-xs sm:text-sm text-slate-500 mt-3">
+                  Direct communication channels for programme planning and consultations.
                 </p>
               </div>
 

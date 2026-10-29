@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Button from './Button';
+import SectionTag from './SectionTag';
 
 export default function OperationalExcellence() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,38 +23,20 @@ export default function OperationalExcellence() {
                 defaults: { ease: 'power3.out' },
               });
 
-              // 1. Perspective Depth & Parallax Glide for Visual Montage
+              // 1. Smooth Fade-in for Visual Montage
               if (imageWrapperRef.current) {
                 tl.fromTo(
                   imageWrapperRef.current,
                   {
                     opacity: 0,
-                    x: 65,
-                    rotateY: -7,
-                    transformPerspective: 1100,
-                    scale: 0.93,
-                    filter: 'blur(16px)',
+                    filter: 'blur(10px)',
                   },
                   {
                     opacity: 1,
-                    x: 0,
-                    rotateY: 0,
-                    scale: 1,
                     filter: 'blur(0px)',
-                    duration: 2.2,
-                    ease: 'power3.out',
+                    duration: 1.6,
+                    ease: 'power2.out',
                     clearProps: 'all',
-                    onComplete: () => {
-                      if (imageWrapperRef.current) {
-                        gsap.to(imageWrapperRef.current, {
-                          y: -6,
-                          duration: 4.8,
-                          repeat: -1,
-                          yoyo: true,
-                          ease: 'sine.inOut',
-                        });
-                      }
-                    },
                   },
                   0
                 );
@@ -143,47 +126,38 @@ export default function OperationalExcellence() {
     <section
       ref={sectionRef}
       id="operational-excellence"
-      className="relative w-full overflow-hidden min-h-[520px] lg:min-h-[580px] flex items-center bg-[#F8FAF9] border-t border-emerald-900/10"
+      className="relative w-full overflow-hidden min-h-[460px] lg:min-h-[500px] flex items-center bg-white border-t border-slate-100"
     >
-      {/* ── Soft Ambient Medical Glow ── */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none" />
-
-      {/* ── Full-Bleed Background Image (operationback.png) ── */}
+      {/* ── Full-Bleed Background Image on Desktop (operationback.png) ── */}
       <div
         ref={imageWrapperRef}
-        className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden will-change-transform"
+        className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden"
       >
         <img
           src="/operationback.png"
           alt="Operational Excellence Clinical Research Laboratory"
-          className="w-full h-full object-cover object-right md:object-right lg:object-right scale-[0.92] lg:scale-[0.90] origin-right -translate-x-2 sm:-translate-x-3 lg:-translate-x-4 xl:-translate-x-11 translate-y-0 sm:-translate-y-1 lg:-translate-y-2"
+          className="w-full h-full object-cover object-right"
         />
-        {/* Soft edge blend so background transitions seamlessly */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#F8FAF9] to-transparent pointer-events-none" />
-        {/* Mobile readability gradient fade so text is 100% crystal clear on small screens */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F8FAF9] via-[#F8FAF9]/95 to-transparent md:hidden pointer-events-none" />
+        {/* Soft edge blend so background transitions seamlessly to clean white on the left */}
+        <div className="absolute inset-y-0 left-0 w-48 sm:w-72 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none" />
       </div>
 
       {/* ── Main Section Content Container ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 sm:pt-12 lg:pt-14 pb-12 sm:pb-14 lg:pb-16">
+      <div className="relative z-10 max-w-7xl xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-9 sm:pt-10 lg:pt-12 pb-10 sm:pb-11 lg:pb-13">
         {/* Left Column Text & Action */}
-        <div className="max-w-xl lg:max-w-[56%] xl:max-w-[53%] pl-2 sm:pl-5 lg:pl-6 xl:pl-4">
+        <div className="max-w-2xl lg:max-w-[62%] xl:max-w-[59%] pl-2 sm:pl-4 lg:pl-5 xl:pl-3">
           {/* Eyebrow Clinical Badge */}
-          <div
-            ref={badgeRef}
-            className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 text-[11px] sm:text-xs font-semibold tracking-wide uppercase mb-3 shadow-2xs backdrop-blur-xs"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
-            </span>
-            <span>Clinical Operations & Strategic Delivery</span>
+          <div ref={badgeRef} className="mb-2.5 sm:mb-3">
+            <SectionTag
+              text="Clinical Operations & Strategic Delivery"
+              variant="green"
+            />
           </div>
 
           {/* Heading: "Operational Excellence" with Medical Green */}
           <h2
             ref={titleRef}
-            className="font-serif text-3xl sm:text-4xl lg:text-[45px] xl:text-[48px] font-bold tracking-tight leading-[1.12] mb-3.5 sm:mb-4 flex flex-wrap items-baseline gap-x-3.5 overflow-hidden py-1"
+            className="font-serif text-3xl sm:text-4xl lg:text-[38px] xl:text-[40px] font-bold tracking-tight leading-[1.12] mb-3 sm:mb-3.5 flex flex-wrap items-baseline gap-x-3.5 overflow-hidden py-0.5"
           >
             <span className="inline-block overflow-hidden">
               <span className="title-word inline-block text-[#0a192f] will-change-transform">
@@ -198,7 +172,7 @@ export default function OperationalExcellence() {
           </h2>
 
           {/* Core Descriptive Text */}
-          <div className="space-y-2.5 text-slate-600 text-sm sm:text-[14.5px] lg:text-[15px] leading-[1.62] mb-4.5 font-sans">
+          <div className="space-y-2.5 sm:space-y-3 text-slate-600 text-[13px] sm:text-[15px] lg:text-[15.5px] leading-[1.62] sm:leading-[1.68] tracking-tight text-justify mb-3.5 sm:mb-4 font-sans">
             <p ref={p1Ref}>
               From clinical development planning to study execution,{' '}
               <strong className="font-semibold text-slate-900">
@@ -218,7 +192,7 @@ export default function OperationalExcellence() {
           </div>
 
           {/* Signature CTA Button */}
-          <div ref={buttonRef} className="pt-2 sm:pt-3">
+          <div ref={buttonRef} className="pt-3 sm:pt-3.5">
             <Button
               href="#contact"
               id="cta-operational-excellence"

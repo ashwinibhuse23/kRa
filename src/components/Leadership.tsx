@@ -166,9 +166,28 @@ export default function Leadership() {
 
             {/* Executive Headline: Dr. Kavya Kadam in elegant Playfair serif */}
             <div className="mb-3 sm:mb-4">
-              <h2 className="leadership-title text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-bold text-white tracking-tight leading-[1.15] mb-3 sm:mb-3.5 font-serif">
-                Dr. Kavya Kadam
-              </h2>
+              <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mb-2 sm:mb-2.5">
+                <h2 className="leadership-title text-2xl sm:text-3xl lg:text-[35px] xl:text-[39px] font-bold text-white tracking-tight leading-[1.15] font-serif">
+                  Dr. Kavya Kadam
+                </h2>
+                <a
+                  href="https://www.linkedin.com/in/drkavyakadam/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Connect with Dr. Kavya Kadam on LinkedIn"
+                  title="Connect on LinkedIn"
+                  className="leadership-title inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A66C2]/15 hover:bg-[#0A66C2] text-[#38bdf8] hover:text-white border border-[#0A66C2]/40 hover:border-[#0A66C2] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(10,102,194,0.5)] hover:-translate-y-0.5 group/in cursor-pointer mt-0.7 sm:mt-2"
+                >
+                  <svg
+                    className="w-3.5 h-3.5 fill-current transition-transform duration-300 group-hover/in:scale-110 shrink-0 translate-y-[0.5px]"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8m1.39 9.74v-8.37H5.07v8.37h2.78z" />
+                  </svg>
+                  <span className="text-[11.5px] font-semibold tracking-wide">LinkedIn</span>
+                </a>
+              </div>
 
               <p className="leadership-subtitle text-xs sm:text-sm lg:text-[15px] font-medium text-sky-400 font-sans tracking-wide">
                 Clinical Trial & Development Consultant <span className="text-sky-300/50 mx-1.5">|</span> Clinical Operations Leader
@@ -176,7 +195,7 @@ export default function Leadership() {
             </div>
 
             {/* Bio Narrative & Credentials: Smooth staggered cascade */}
-            <div className="w-full max-w-[710px] space-y-2.5">
+            <div className="w-full max-w-[710px] space-y-2.5 text-justify tracking-tight">
               <p className="leadership-para text-slate-200 text-sm sm:text-[14.5px] lg:text-[15px] leading-relaxed font-sans font-normal">
                 Dr. Kavya Kadam is a medically qualified clinical research professional with over 20 years of experience across clinical operations, clinical trial management, project leadership and product development.
               </p>
@@ -208,13 +227,10 @@ export default function Leadership() {
 
               <div className="relative rounded-2xl overflow-hidden border border-sky-500/20 shadow-[0_15px_40px_rgba(0,10,25,0.7)] bg-[#020B18]">
                 <img
-                  src="/kavya-leader.jpg"
+                  src="/kavya-leader.jpeg"
                   alt="Dr. Kavya Kadam - Founder & Leadership"
-                  className="w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[395px] xl:max-w-[420px] h-auto object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[395px] xl:max-w-[420px] max-h-[355px] sm:max-h-[415px] lg:max-h-[475px] xl:max-h-[500px] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 />
-
-                {/* Gentle bottom edge gradient blend */}
-                <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#020B18] via-[#020B18]/60 to-transparent pointer-events-none" />
               </div>
             </div>
           </div>

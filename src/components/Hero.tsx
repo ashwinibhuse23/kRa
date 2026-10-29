@@ -2,7 +2,11 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Button from './Button';
 
-export default function Hero() {
+interface HeroProps {
+  onOpenContactModal?: () => void;
+}
+
+export default function Hero({ onOpenContactModal }: HeroProps) {
   const heroSectionRef = useRef<HTMLElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -133,21 +137,18 @@ export default function Hero() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover object-[center_right] pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover object-[65%_30%] sm:object-[65%_35%] lg:object-[center_right] pointer-events-none"
       >
         <source src="/herovideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* ── Left-to-Right Dark Navy Gradient Overlay ── */}
-      {/* Keeps text contrast crystal clear on the left, while revealing the dynamic video with the holographic map and scientist on the right */}
+      {/* ── Responsive Dark Navy Gradient Overlay ── */}
+      {/* Mobile: Smooth balanced gradient for clear text contrast while showcasing the scientist and holographic interface */}
+      {/* Desktop (lg): Unchanged left-to-right gradient keeping left text legible and right video completely open */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 pointer-events-none z-[1]"
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(2, 7, 20, 0.96) 0%, rgba(2, 7, 20, 0.88) 36%, rgba(2, 7, 20, 0.52) 58%, rgba(2, 7, 20, 0.15) 78%, transparent 100%)',
-        }}
+        className="absolute inset-0 pointer-events-none z-[1] bg-gradient-to-b from-[#020714]/85 via-[#020714]/65 to-[#020714]/85 lg:bg-[linear-gradient(90deg,rgba(2,7,20,0.96)_0%,rgba(2,7,20,0.88)_36%,rgba(2,7,20,0.52)_58%,rgba(2,7,20,0.15)_78%,transparent_100%)]"
       />
 
 
@@ -165,9 +166,7 @@ export default function Hero() {
 
           {/* Subheading lines */}
           <div ref={subheadingsRef} className="mb-5 space-y-0.5">
-            <p className="text-xl sm:text-2xl lg:text-[27px] font-light text-slate-100 tracking-tight leading-snug">
-             Clinical Trials That Move Forward.
-            </p>
+            
             <p className="text-xl sm:text-2xl lg:text-[27px] font-medium text-white tracking-tight leading-snug">
              Walking With You to Project Completion
             </p>
@@ -191,10 +190,18 @@ export default function Hero() {
           <div ref={buttonsRef} className="flex flex-wrap items-center gap-3 sm:gap-3.5">
             {/* Primary CTA: Get in Touch */}
             <Button
-              href="#contact"
               id="hero-cta-get-in-touch"
               size="compact"
               variant="primary"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onOpenContactModal) {
+                  onOpenContactModal();
+                } else {
+                  const el = document.querySelector('#contact');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               Get in Touch
             </Button>

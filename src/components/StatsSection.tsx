@@ -54,7 +54,7 @@ export default function StatsSection() {
       case 'years-experience':
         return (
           <svg
-            className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0070BA]"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-4.5 lg:h-4.5 text-[#0070BA]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -77,7 +77,7 @@ export default function StatsSection() {
       case 'clinical-studies':
         return (
           <svg
-            className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#00A884]"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-4.5 lg:h-4.5 text-[#00A884]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -94,7 +94,7 @@ export default function StatsSection() {
       case 'therapeutic-areas':
         return (
           <svg
-            className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#7C3AED]"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-4.5 lg:h-4.5 text-[#7C3AED]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -114,7 +114,7 @@ export default function StatsSection() {
       case 'countries-supported':
         return (
           <svg
-            className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0284C7]"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-4.5 lg:h-4.5 text-[#0284C7]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -208,37 +208,31 @@ export default function StatsSection() {
       ref={sectionRef}
       id="metrics"
       aria-label="Clinical Metrics and Track Record"
-      className="relative w-full z-20 -mt-8 sm:-mt-10 lg:-mt-12 mb-1.5 sm:mb-2 lg:mb-2.5 pt-1 sm:pt-1.5 pb-0.5"
+      className="relative w-full z-20 -mt-12 sm:-mt-14 lg:-mt-12 mb-1.5 sm:mb-2 lg:mb-2.5 pt-1 sm:pt-1.5 pb-0.5"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* ── Floating Stats Card (Compact Reference Design) ── */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-[0_10px_35px_rgba(0,35,80,0.05)] border border-slate-100/90 py-3.5 sm:py-4.5 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 relative">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-[0_10px_35px_rgba(0,35,80,0.05)] border border-slate-100/90 pt-3 pb-3.5 sm:py-3.5 lg:py-4.5 px-1.5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-4 relative">
             {stats.map((stat, idx) => (
               <div
                 key={stat.id}
-                className={`stat-metric-item relative flex flex-col items-center justify-center text-center px-2.5 sm:px-4 py-1.5 group ${
-                  idx < 2 ? 'border-b border-sky-100/80 lg:border-b-0 pb-3 mb-2.5 lg:pb-1 lg:mb-0' : ''
-                }`}
+                className="stat-metric-item relative flex flex-col items-center justify-center text-center px-0.5 sm:px-3 lg:px-4 py-1 sm:py-1.5 group"
               >
-                {/* ── Thin Vertical Divider Line (Matches Reference Image) ── */}
+                {/* ── Thin Vertical Divider Line between all 4 columns ── */}
                 {idx < 3 && (
-                  <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-18 lg:h-22 bg-sky-100/90 pointer-events-none" />
-                )}
-                {/* Mobile vertical divider between col 1 and 2 */}
-                {idx % 2 === 0 && (
-                  <div className="lg:hidden absolute right-0 top-1/2 -translate-y-1/2 w-px h-14 bg-sky-100/90 pointer-events-none" />
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-px h-9 sm:h-14 lg:h-22 bg-sky-100/90 pointer-events-none" />
                 )}
 
                 {/* ── Compact Circular Pastel Icon Badge ── */}
                 <div
-                  className={`w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-full ${stat.badgeBg} flex items-center justify-center mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110 shadow-2xs`}
+                  className={`w-6.5 h-6.5 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-full ${stat.badgeBg} flex items-center justify-center mb-1 sm:mb-1.5 lg:mb-2 transition-transform duration-300 group-hover:scale-110 shadow-2xs`}
                 >
                   {getStatIcon(stat.id)}
                 </div>
 
                 {/* ── Refined Blue Number + Suffix (Website Primary Sans Font) ── */}
-                <div className="flex items-baseline justify-center text-2xl sm:text-3xl lg:text-[36px] font-bold font-sans text-[#0060B2] tracking-tight leading-none mb-1 transition-transform duration-300 group-hover:scale-105">
+                <div className="flex items-baseline justify-center text-base min-[360px]:text-[17px] min-[400px]:text-lg sm:text-2xl lg:text-[36px] font-bold font-sans text-[#0060B2] tracking-tight leading-none mb-0.5 sm:mb-1 transition-transform duration-300 group-hover:scale-105">
                   <span
                     ref={(el) => {
                       countRefs.current[idx] = el;
@@ -250,7 +244,7 @@ export default function StatsSection() {
                 </div>
 
                 {/* ── Label (Website Primary Sans Font) ── */}
-                <h3 className="text-slate-800 font-sans font-semibold text-[11.5px] sm:text-[12px] lg:text-[13px] leading-snug mb-0.5">
+                <h3 className="text-slate-800 font-sans font-semibold text-[8.5px] min-[360px]:text-[9px] min-[400px]:text-[10px] sm:text-[11.5px] lg:text-[13px] leading-tight sm:leading-snug mb-0.5">
                   {stat.label}
                 </h3>
 

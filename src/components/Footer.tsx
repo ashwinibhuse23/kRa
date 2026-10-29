@@ -15,6 +15,7 @@ export default function Footer() {
         { name: 'Operating Approach', href: '#about' },
         { name: 'Why kRa Life Sciences', href: '#why-kra' },
         { name: 'Founder & Leadership', href: '#leadership' },
+        { name: 'FAQs', href: '#faq' },
       ],
     },
     {
@@ -34,7 +35,6 @@ export default function Footer() {
         { name: 'Therapeutic Areas', href: '#expertise' },
         { name: 'Study Phases & Types', href: '#expertise' },
         { name: 'Product Modalities', href: '#expertise' },
-        { name: 'Past Collaborations', href: '#experience' },
         { name: 'Contact & Enquiries', href: '#contact' },
       ],
     },
@@ -113,22 +113,9 @@ export default function Footer() {
               &copy; {currentYear} <strong className="text-white font-semibold">kRa Life Sciences</strong>. All rights reserved.
             </span>
             <span className="hidden sm:inline text-slate-600">|</span>
-            <span className="text-slate-500">
-              GCP Compliant Clinical Trial Advisory
-            </span>
+
           </div>
 
-          {/* Back to top button */}
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white transition-all cursor-pointer"
-          >
-            <span>Back to top</span>
-            <span className="transition-transform duration-200 group-hover:-translate-y-0.5 text-sky-400">
-              ↑
-            </span>
-          </button>
 
         </div>
 

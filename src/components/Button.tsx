@@ -5,6 +5,7 @@ export type ButtonSize = 'sm' | 'compact' | 'md' | 'lg';
 
 export interface ButtonProps {
   children: ReactNode;
+  icon?: ReactNode;
   href?: string;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
   type?: 'button' | 'submit' | 'reset';
@@ -22,6 +23,7 @@ export interface ButtonProps {
 
 export default function Button({
   children,
+  icon,
   href,
   onClick,
   type = 'button',
@@ -85,20 +87,22 @@ export default function Button({
         <span
           className={`${arrowCircleSizes} ${arrowBadgeBg} rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-xs`}
         >
-          <svg
-            className={`${arrowIconSizes} text-white transition-colors duration-300`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2.5}
-              d="M5 12h14M12 5l7 7-7 7"
-            />
-          </svg>
+          {icon ?? (
+            <svg
+              className={`${arrowIconSizes} text-white transition-colors duration-300`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 12h14M12 5l7 7-7 7"
+              />
+            </svg>
+          )}
         </span>
       )}
     </>
