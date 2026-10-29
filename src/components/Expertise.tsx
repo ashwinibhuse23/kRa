@@ -75,7 +75,7 @@ export default function Expertise() {
         {/* ── Header Area: Left Text Content ── */}
         <div className="exp-header-text max-w-3xl mb-8 sm:mb-10 relative z-10">
           <div>
-            <SectionTag text=" Our Experience &amp;  Expertise" variant="green" />
+            <SectionTag text="Our Experience & Expertise" variant="green" />
           </div>
 
           <h2 className="mt-5 sm:mt-6 mb-2.5 sm:mb-3 text-xl sm:text-2xl lg:text-[30px] xl:text-[33px] font-semibold text-slate-900 tracking-tight leading-[1.28] font-serif">

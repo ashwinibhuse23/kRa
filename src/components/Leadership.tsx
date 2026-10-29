@@ -158,15 +158,31 @@ export default function Leadership() {
       <div ref={contentRef} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left Column: Leadership Narrative, Bio & Pedigree ── */}
-          <div className="lg:col-span-7 xl:col-span-7 pl-3 sm:pl-5 lg:pl-4">
+          <div className="lg:col-span-7 xl:col-span-7 pl-0 sm:pl-4 lg:pl-4">
+            {/* Mobile View Only Portrait Image (Centered at top on mobile, hidden on desktop) */}
+            <div className="flex lg:hidden justify-center items-center mb-4 sm:mb-5">
+              <div className="leadership-portrait relative group">
+                {/* Subtle ambient back-glow behind portrait */}
+                <div className="leadership-portrait-glow absolute inset-0 bg-sky-500/15 rounded-3xl blur-2xl -z-10 group-hover:bg-sky-400/20 transition-all duration-500" />
+
+                <div className="relative rounded-2xl overflow-hidden border border-sky-500/20 shadow-[0_15px_40px_rgba(0,10,25,0.7)] bg-[#020B18]">
+                  <img
+                    src="/kavya-leader.jpeg"
+                    alt="Dr. Kavya Kadam - Founder & Leadership"
+                    className="w-full max-w-[270px] sm:max-w-[320px] max-h-[330px] sm:max-h-[390px] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* Tag: FOUNDER & LEADERSHIP using SectionTag */}
-            <div className="leadership-tag mb-2.5 sm:mb-3">
+            <div className="leadership-tag mb-2.5 sm:mb-3 flex justify-center lg:justify-start">
               <SectionTag text="Founder & Leadership" variant="green" isDark={true} />
             </div>
 
             {/* Executive Headline: Dr. Kavya Kadam in elegant Playfair serif */}
-            <div className="mb-3 sm:mb-4">
-              <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mb-2 sm:mb-2.5">
+            <div className="mb-4 sm:mb-5 text-center lg:text-left">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-3.5 mb-2 sm:mb-2.5">
                 <h2 className="leadership-title text-2xl sm:text-3xl lg:text-[35px] xl:text-[39px] font-bold text-white tracking-tight leading-[1.15] font-serif">
                   Dr. Kavya Kadam
                 </h2>
@@ -176,7 +192,7 @@ export default function Leadership() {
                   rel="noopener noreferrer"
                   aria-label="Connect with Dr. Kavya Kadam on LinkedIn"
                   title="Connect on LinkedIn"
-                  className="leadership-title inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A66C2]/15 hover:bg-[#0A66C2] text-[#38bdf8] hover:text-white border border-[#0A66C2]/40 hover:border-[#0A66C2] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(10,102,194,0.5)] hover:-translate-y-0.5 group/in cursor-pointer mt-0.7 sm:mt-2"
+                  className="leadership-title inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A66C2]/15 hover:bg-[#0A66C2] text-[#38bdf8] hover:text-white border border-[#0A66C2]/40 hover:border-[#0A66C2] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(10,102,194,0.5)] hover:-translate-y-0.5 group/in cursor-pointer"
                 >
                   <svg
                     className="w-3.5 h-3.5 fill-current transition-transform duration-300 group-hover/in:scale-110 shrink-0 translate-y-[0.5px]"
@@ -219,8 +235,8 @@ export default function Leadership() {
             </div>
           </div>
 
-          {/* Right Column: Clean Dr. Kavya Kadam Portrait on Dark Navy Background ── */}
-          <div className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end items-center">
+          {/* Right Column: Clean Dr. Kavya Kadam Portrait on Dark Navy Background (Desktop Only) ── */}
+          <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center lg:justify-end items-center">
             <div className="leadership-portrait relative group">
               {/* Subtle ambient back-glow behind portrait */}
               <div className="leadership-portrait-glow absolute inset-0 bg-sky-500/15 rounded-3xl blur-2xl -z-10 group-hover:bg-sky-400/20 transition-all duration-500" />

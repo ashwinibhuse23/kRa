@@ -82,7 +82,7 @@ export default function Button({
 
   const content = (
     <>
-      <span className="shrink-0">{children}</span>
+      <span className="min-w-0 flex-1">{children}</span>
       {hasArrow && (
         <span
           className={`${arrowCircleSizes} ${arrowBadgeBg} rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105 shadow-xs`}

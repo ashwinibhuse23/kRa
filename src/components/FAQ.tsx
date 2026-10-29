@@ -72,7 +72,7 @@ export default function FAQ({ onOpenContactModal }: FAQProps) {
   return (
     <section
       id="faq"
-      className={`relative w-full overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F1F6FA] to-[#E9F2F8] border-t border-slate-200/80 transition-all duration-300 font-sans ${
+      className={`relative w-full overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F1F6FA] to-[#E9F2F8] border-t border-slate-200/80 transition-all duration-300 font-sans scroll-mt-20 ${
         isOpen ? 'py-10 sm:py-12' : 'py-6 sm:py-8'
       }`}
     >
@@ -81,13 +81,14 @@ export default function FAQ({ onOpenContactModal }: FAQProps) {
       <div className="absolute bottom-0 left-10 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* ── Left-Aligned Button with Button.tsx Design ── */}
-        <div className="flex justify-start">
+        {/* ── Left-Aligned Button on Desktop, Full Width on Mobile with Button.tsx Design ── */}
+        <div className="w-full flex justify-start">
           <Button
             id="toggle-faq-btn"
             onClick={toggleOpen}
             variant="primary"
             size="compact"
+            className="w-full sm:w-auto justify-between py-2.5 sm:py-2 pl-8 sm:pl-5.5 pr-2.5 sm:pr-2 shadow-md"
             icon={
               <svg
                 className={`w-3.5 h-3.5 text-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -105,7 +106,9 @@ export default function FAQ({ onOpenContactModal }: FAQProps) {
               </svg>
             }
           >
-            {isOpen ? 'Hide Frequently Asked Questions' : 'Frequently Asked Questions (FAQ)'}
+            <span className="block text-center sm:text-left font-sans sm:font-serif font-semibold sm:font-medium text-[15px] sm:text-[14px] tracking-normal sm:tracking-normal text-white">
+              {isOpen ? 'Hide Frequently Asked Questions' : 'Frequently Asked Questions (FAQ)'}
+            </span>
           </Button>
         </div>
 

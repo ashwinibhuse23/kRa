@@ -5,6 +5,10 @@ import MedicalParticlesBackground from './MedicalParticlesBackground';
 
 export default function AboutUs() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const part1Ref = useRef<HTMLDivElement>(null);
@@ -14,6 +18,33 @@ export default function AboutUs() {
   const paragraphsRef = useRef<HTMLDivElement>(null);
   const founderRef = useRef<HTMLDivElement>(null);
   const videoCardRef = useRef<HTMLDivElement>(null);
+
+  // ── Auto-slide interval for mobile cards slider (every 3 seconds) ──
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setMobileSlide((prev) => (prev + 1) % 5);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setIsPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current !== null) {
+      const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+      if (deltaX > 40) {
+        setMobileSlide((prev) => (prev - 1 + 5) % 5);
+      } else if (deltaX < -40) {
+        setMobileSlide((prev) => (prev + 1) % 5);
+      }
+      touchStartX.current = null;
+    }
+    setTimeout(() => setIsPaused(false), 2500);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => { }, sectionRef);
@@ -487,7 +518,7 @@ export default function AboutUs() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Section Header: Tag followed directly by explanatory content */}
-          <div className="approach-header-item mb-6 sm:mb-7 lg:mb-8 max-w-3xl pl-2 sm:pl-4 lg:pl-6 xl:pl-4">
+          <div className="approach-header-item mb-4 sm:mb-7 lg:mb-8 max-w-3xl pl-2 sm:pl-4 lg:pl-6 xl:pl-4">
             <SectionTag text="Our Approach" variant="green" isDark={true} className="mb-1.5 sm:mb-2" />
             <p className="text-sm sm:text-[15px] lg:text-[16px] text-slate-200 leading-[1.6] font-sans mt-3 text-justify">
               Our approach combines medical understanding, operational rigour and business insight to align
@@ -495,10 +526,10 @@ export default function AboutUs() {
             </p>
           </div>
 
-          {/* ── 5 Approach Cards Grid (Dark Theme) ── */}
-          <div className="relative pt-4 sm:pt-5 lg:pt-6">
-            {/* Grid of 5 Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-11 sm:gap-y-11 gap-x-3.5 sm:gap-x-3.5 relative z-10 items-stretch">
+          {/* ── 5 Approach Cards (Desktop: Grid, Mobile: 3s Auto-Slider) ── */}
+          <div className="relative pt-2 sm:pt-5 lg:pt-6">
+            {/* Desktop & Tablet: Grid of 5 Cards (Unchanged on sm and lg screens) */}
+            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-y-11 gap-x-3.5 relative z-10 items-stretch">
               {approachItems.map((item, idx) => {
                 const isSelected = activeCard === idx;
                 return (
@@ -553,6 +584,122 @@ export default function AboutUs() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Mobile View Only: 1-by-1 Auto Slider (Rotates every 3 seconds - Compact & Sleek) */}
+            <div
+              className="block sm:hidden relative z-10 px-2 select-none"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div className="relative h-[205px] max-w-sm mx-auto">
+                {approachItems.map((item, idx) => {
+                  const isActive = mobileSlide === idx;
+                  return (
+                    <div
+                      key={item.num}
+                      className={`absolute inset-x-0 top-0 pt-8 flex flex-col transition-all duration-700 ease-out ${
+                        isActive
+                          ? 'opacity-100 scale-100 translate-x-0 pointer-events-auto z-10'
+                          : 'opacity-0 scale-95 translate-x-6 pointer-events-none z-0'
+                      }`}
+                    >
+                      {/* Floating Circular Photo & Overlapping Icon Badge */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+                        <div className="w-16 h-16 rounded-full overflow-hidden border-3 border-slate-700/80 shadow-md ring-2 ring-white/10">
+                          <img
+                            src={item.img}
+                            alt={item.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+
+                        {/* Icon Badge overlapping bottom of circle */}
+                        <div
+                          className={`-mt-3 w-7 h-7 rounded-full ${item.badgeBg} shadow-md border-2 border-[#0D1C33] flex items-center justify-center z-10`}
+                        >
+                          {item.icon}
+                        </div>
+                      </div>
+
+                      {/* Dark Sleek Information Card (Compact Padding) */}
+                      <div className="w-full bg-[#0D1C33]/95 rounded-2xl pt-11 pb-3 px-3.5 text-center border border-slate-700/70 shadow-xl backdrop-blur-md flex flex-col justify-between">
+                        <div>
+                          <h4 className="font-sans font-bold text-sm text-white mb-1 leading-snug">
+                            {item.title}
+                          </h4>
+                          <p className="text-[11px] text-slate-300/85 leading-relaxed font-sans max-w-xs mx-auto line-clamp-3">
+                            {item.desc}
+                          </p>
+                        </div>
+
+                        {/* Bottom Colored Accent Pill Bar */}
+                        <div className="mt-2 flex justify-center">
+                          <div
+                            className={`w-9 h-1 rounded-full ${item.pillBg}`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Mobile Controls: Prev, Pagination Indicators, Next */}
+              <div className="flex items-center justify-between max-w-xs mx-auto mt-2 px-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileSlide((prev) => (prev - 1 + approachItems.length) % approachItems.length);
+                    setIsPaused(true);
+                    setTimeout(() => setIsPaused(false), 3000);
+                  }}
+                  className="w-7 h-7 rounded-full bg-slate-800/90 border border-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Previous card"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="flex items-center gap-1.5">
+                  {approachItems.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => {
+                        setMobileSlide(idx);
+                        setIsPaused(true);
+                        setTimeout(() => setIsPaused(false), 3000);
+                      }}
+                      aria-label={`Go to card ${idx + 1}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        mobileSlide === idx
+                          ? 'w-6 bg-[#0078B8]'
+                          : 'w-1.5 bg-slate-700 hover:bg-slate-500'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileSlide((prev) => (prev + 1) % approachItems.length);
+                    setIsPaused(true);
+                    setTimeout(() => setIsPaused(false), 3000);
+                  }}
+                  className="w-7 h-7 rounded-full bg-slate-800/90 border border-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Next card"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
