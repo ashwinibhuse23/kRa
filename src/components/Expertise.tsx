@@ -205,7 +205,7 @@ export default function Expertise() {
                     </span>
                   </div>
 
-                  {/* 8. Biologics */}
+                  {/* 8. Biologics & Biosimilars */}
                   <div className="flex items-center gap-2 py-0.5 group/item">
                     <div className="w-4.5 h-4.5 rounded-full bg-sky-50 text-[#0078B8] flex items-center justify-center shrink-0 group-hover/item:bg-[#0078B8] group-hover/item:text-white transition-all">
                       <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +213,7 @@ export default function Expertise() {
                       </svg>
                     </div>
                     <span className="text-[11.5px] font-medium text-slate-700 leading-tight group-hover/item:text-slate-900 transition-colors">
-                      Biologics
+                      Biologics &amp; Biosimilars
                     </span>
                   </div>
                 </div>
@@ -265,6 +265,7 @@ export default function Expertise() {
                     { label: 'Dermatology', icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01' },
                     { label: 'Endocrinology', icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4' },
                     { label: 'Stem cell therapies', icon: 'M12 8a3 3 0 100-6 3 3 0 000 6zm-7 9a3 3 0 100-6 3 3 0 000 6zm14 0a3 3 0 100-6 3 3 0 000 6z' },
+                    { label: 'Biologics & Biosimilars', icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1' },
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 py-0.5 border-b border-slate-100/70 last:border-0 group/item">
                       <div className="w-4.5 h-4.5 rounded-full bg-rose-50 text-[#CF3838] flex items-center justify-center shrink-0 group-hover/item:bg-[#CF3838] group-hover/item:text-white transition-all">
@@ -315,7 +316,7 @@ export default function Expertise() {
                 {/* List Items with Compact Circular Icon Badges */}
                 <div className="space-y-0 relative z-10 pt-4">
                   {[
-                    { label: 'Biosimilars', icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1' },
+                    { label: 'Biologics & Biosimilars', icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1' },
                     { label: 'Monoclonal antibodies (mAbs)', icon: 'M12 3v9m0 0l-4-4m4 4l4-4m-4 9v6' },
                     { label: 'Vaccines', icon: 'M19 14l-7 7m0 0l-3-3m3 3l7-7m-7-7l7 7m-7-7L5 14m0 0l3 3m-3-3l7 7' },
                     { label: 'Generic products', icon: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' },

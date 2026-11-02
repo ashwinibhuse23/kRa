@@ -21,7 +21,7 @@ const FAQ_DATA: FAQItem[] = [
     number: '02',
     question: 'Which therapeutic areas does kRa Life Sciences support?',
     answer:
-      'We support clinical research across a broad range of therapeutic areas, including oncology, cardiology, neurology, immunology, metabolic disorders, and other clinical research specialties, depending on study requirements.',
+      'We support clinical research across a broad range of therapeutic areas, including, but not limited to, oncology, cardiology, neurology, immunology, metabolic disorders, and other clinical research specialties, depending on study requirements.',
   },
   {
     id: 'faq-3',
