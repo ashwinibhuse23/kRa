@@ -294,7 +294,7 @@ export default function Services() {
         'Sponsor-side and investigator-side operational inputs',
         'Clinical trial feasibility and execution reviews',
         'Clinical research process and workflow assessments',
-        'Support for Phase I and TQT facility planning',
+        'Support for Phase I, TQT, and BA/BE Facility Planning.',
         'BA/BE screening and investigator database planning',
         'Clinical research training and development',
         'Clinical Trial Planning and Support Across Phase I, II, III & IV Studies'
