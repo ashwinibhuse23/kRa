@@ -18,6 +18,7 @@ export default function Contact() {
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     let ctx: gsap.Context;
@@ -148,14 +149,41 @@ export default function Contact() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate brief network submission
-    setTimeout(() => {
-      setSubmitting(false);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          organisation: formData.organisation,
+          email: formData.email,
+          phone: formData.phone,
+          areaOfInterest: formData.areaOfInterest,
+          requirements: formData.requirements,
+          formType: 'Main Contact Section Form',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Failed to submit enquiry. Please try again.');
+      }
+
       setSubmitted(true);
-    }, 600);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'An error occurred while transmitting your enquiry. Please check your connection or contact us directly.';
+      setErrorMessage(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const areasOfInterest = [
@@ -403,6 +431,7 @@ export default function Contact() {
                     variant="secondary"
                     onClick={() => {
                       setSubmitted(false);
+                      setErrorMessage('');
                       setFormData({
                         fullName: '',
                         organisation: '',
@@ -527,6 +556,14 @@ export default function Contact() {
                       <strong className="text-amber-800">Privacy Notice:</strong> Please do not submit patient-identifiable information or confidential clinical trial data through this form.
                     </span>
                   </div>
+
+                  {/* Error Notification Alert */}
+                  {errorMessage && (
+                    <div className="contact-form-row p-3.5 rounded-xl bg-rose-50 border border-rose-200 flex items-start gap-2.5 text-xs text-rose-800 leading-relaxed">
+                      <span className="text-rose-600 font-bold shrink-0 mt-0.5">✕</span>
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <div className="contact-form-row pt-2 flex sm:justify-start justify-center">

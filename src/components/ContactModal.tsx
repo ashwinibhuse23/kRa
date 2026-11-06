@@ -27,6 +27,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   // Close modal on Escape key press & handle body scroll lock
@@ -52,19 +53,46 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setErrorMessage('');
 
-    // Simulate submission with responsive feel
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          organisation: formData.organisation,
+          email: formData.email,
+          phone: formData.phone,
+          areaOfInterest: formData.areaOfInterest,
+          requirements: formData.requirements,
+          formType: 'Modal Popup Form',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Failed to submit enquiry. Please try again.');
+      }
+
       setSubmitted(true);
-    }, 600);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unable to transmit enquiry. Please check your connection or contact us directly.';
+      setErrorMessage(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleResetAndClose = () => {
     setSubmitted(false);
+    setErrorMessage('');
     setFormData({
       fullName: '',
       organisation: '',
@@ -259,6 +287,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     className="w-full px-3 py-1.5 rounded-lg bg-slate-50/80 hover:bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:bg-white focus:outline-none focus:border-[#0078B8] focus:ring-1 focus:ring-[#0078B8] transition-all resize-none h-13"
                   />
                 </div>
+
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-start gap-2">
+                    <span className="text-rose-500 font-bold shrink-0">✕</span>
+                    <span className="leading-snug">{errorMessage}</span>
+                  </div>
+                )}
 
                 {/* Footer Actions */}
                 <div className="pt-2 flex items-center justify-between gap-3 border-t border-slate-100">
