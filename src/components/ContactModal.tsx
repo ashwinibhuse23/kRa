@@ -75,10 +75,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         }),
       });
 
-      const data = await response.json();
+      let data: { success?: boolean; message?: string } = {};
+      try {
+        data = await response.json();
+      } catch {
+        // If response is not valid JSON
+      }
 
       if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Failed to submit enquiry. Please try again.');
+        throw new Error(data.message || `Submission failed (Status: ${response.status}). Please check your connection or contact us directly.`);
       }
 
       setSubmitted(true);

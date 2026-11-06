@@ -77,17 +77,10 @@ export default function Contact() {
               );
 
               tl.fromTo(
-                '.contact-desc',
-                { opacity: 0, y: 22, filter: 'blur(6px)' },
-                { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.3, clearProps: 'all' },
-                0.4
-              );
-
-              tl.fromTo(
                 '.contact-subtext',
                 { opacity: 0, y: 18, filter: 'blur(6px)' },
                 { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.25, clearProps: 'all' },
-                0.55
+                0.45
               );
 
               // 4. Contact Cards Reveal: Slow, modern staggered ascent
@@ -171,10 +164,15 @@ export default function Contact() {
         }),
       });
 
-      const data = await response.json();
+      let data: { success?: boolean; message?: string } = {};
+      try {
+        data = await response.json();
+      } catch {
+        // If response is not valid JSON (e.g. server HTML error page)
+      }
 
       if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Failed to submit enquiry. Please try again.');
+        throw new Error(data.message || `Submission failed (Status: ${response.status}). Please check your connection or contact us directly.`);
       }
 
       setSubmitted(true);
