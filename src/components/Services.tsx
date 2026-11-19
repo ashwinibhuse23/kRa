@@ -476,9 +476,9 @@ export default function Services() {
         {/* ── Subtle Divider Line ── */}
         <div className="services-divider-line w-full h-px bg-slate-200/80 mb-5.5 sm:mb-6.5 origin-center" />
 
-        {/* ── Interactive Service Navigation Tabs (Mobile: 2 tabs per line, Desktop: 6 tabs) ── */}
-        <div className="services-tabs-reveal mb-7 sm:mb-8 w-full pl-0.5 sm:pl-2 lg:pl-3 xl:pl-2.5">
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2 sm:gap-2.5 w-full">
+        {/* ── Interactive Service Navigation Tabs (All 6 Tabs in One Line) ── */}
+        <div className="services-tabs-reveal mb-7 sm:mb-8 w-full">
+          <div className="flex md:grid md:grid-cols-6 gap-1.5 sm:gap-2 lg:gap-2.5 w-full overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-none">
             {servicesData.map((service, idx) => {
               const isActive = activeIdx === idx;
               return (
@@ -486,30 +486,33 @@ export default function Services() {
                   key={service.id}
                   type="button"
                   onClick={() => handleServiceSelect(idx)}
-                  className={`service-tab-pill w-full flex items-center gap-1.5 sm:gap-1.5 px-2.5 sm:px-2.5 xl:px-1.5 2xl:px-2.5 py-2 sm:py-2.5 rounded-full text-[11px] min-[390px]:text-[11.5px] sm:text-[11.5px] md:text-[12px] xl:text-[11px] 2xl:text-[11.8px] font-semibold transition-all duration-200 cursor-pointer text-left min-h-[44px] sm:min-h-0 ${isActive
-                    ? 'bg-[#084D3E] text-white shadow-md shadow-[#084D3E]/20 ring-1 ring-[#084D3E]'
-                    : 'bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 shadow-xs border border-slate-200/80 hover:border-slate-300'
-                    }`}
+                  className={`service-tab-pill flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-2.5 lg:px-3 py-2 sm:py-2.5 rounded-full text-[11px] min-[390px]:text-[11.5px] sm:text-[11.5px] md:text-[11px] lg:text-[11.5px] xl:text-[12px] 2xl:text-[12.5px] font-semibold transition-all duration-200 cursor-pointer text-left min-w-0 shrink-0 md:shrink w-auto md:w-full min-h-[42px] sm:min-h-0 ${
+                    isActive
+                      ? 'bg-[#084D3E] text-white shadow-md shadow-[#084D3E]/20 ring-1 ring-[#084D3E]'
+                      : 'bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 shadow-xs border border-slate-200/80 hover:border-slate-300'
+                  }`}
+                  title={service.tabLabel}
                 >
                   {/* Circular Icon Badge */}
                   <div
-                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive
-                      ? 'bg-[#00A896] text-white shadow-sm'
-                      : 'bg-[#EEF7FC] text-[#0088CC] border border-sky-100/90'
-                      }`}
+                    className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      isActive
+                        ? 'bg-[#00A896] text-white shadow-xs'
+                        : 'bg-[#EEF7FC] text-[#0088CC] border border-sky-100/90'
+                    }`}
                   >
                     {getServiceIcon(service.id, isActive)}
                   </div>
 
-                  {/* Tab Label */}
-                  <span className="flex-1 font-semibold leading-tight line-clamp-2 xl:whitespace-nowrap">
+                  {/* Tab Label (Single Line) */}
+                  <span className="flex-1 font-semibold leading-tight whitespace-nowrap truncate min-w-0">
                     {service.tabLabel}
                   </span>
 
                   {/* Up-Right Arrow on Active Tab */}
                   {isActive && (
                     <svg
-                      className="w-3 h-3 text-[#2DD4BF] shrink-0 ml-0.5 hidden min-[400px]:block"
+                      className="w-3 h-3 text-[#2DD4BF] shrink-0 ml-auto hidden xl:block"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"

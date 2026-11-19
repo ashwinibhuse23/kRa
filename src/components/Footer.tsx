@@ -1,6 +1,10 @@
 import Logo from './Logo';
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate?: (path: 'home' | 'training-development', hash?: string) => void;
+}
+
+export default function Footer({ onNavigate }: FooterProps = {}) {
   const currentYear = new Date().getFullYear();
 
   const navColumns = [
@@ -21,6 +25,7 @@ export default function Footer() {
         { name: 'Development Strategy', href: '#services' },
         { name: 'Patient & Site Strategy', href: '#services' },
         { name: 'Operational Excellence', href: '#services' },
+        { name: 'Training & Development', href: '#training-development' },
         { name: 'Cross-Functional Integration', href: '#services' },
         { name: 'Specialist Advisory', href: '#services' },
       ],
@@ -88,7 +93,16 @@ export default function Footer() {
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-slate-400 hover:text-[#00C4FF] transition-colors inline-block"
+                        onClick={(e) => {
+                          if (link.href === '#training-development' && onNavigate) {
+                            e.preventDefault();
+                            onNavigate('training-development');
+                          } else if (onNavigate) {
+                            e.preventDefault();
+                            onNavigate('home', link.href);
+                          }
+                        }}
+                        className="text-slate-400 hover:text-[#00C4FF] transition-colors inline-block cursor-pointer"
                       >
                         {link.name}
                       </a>

@@ -26,6 +26,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { name: 'Services', href: '#services' },
+  { name: 'Training & Development', href: '#training-development' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -33,22 +34,38 @@ const SECTIONS_FOR_SCROLLSPY = [
   '#home',
   '#about',
   '#services',
+  '#training-development',
   '#why-kra',
   '#expertise',
   '#leadership',
   '#contact',
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  currentPath?: 'home' | 'training-development';
+  onNavigate?: (path: 'home' | 'training-development', hash?: string) => void;
+}
+
+export default function Navbar({ currentPath = 'home', onNavigate }: NavbarProps = {}) {
   const [activeItem, setActiveItem] = useState(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash;
-      if (SECTIONS_FOR_SCROLLSPY.includes(hash)) {
+      if (path.includes('training') || hash.includes('training')) {
+        return '#training-development';
+      }
+      if (hash && SECTIONS_FOR_SCROLLSPY.includes(hash)) {
         return hash;
       }
     }
     return '#home';
   });
+
+  useEffect(() => {
+    if (currentPath === 'training-development') {
+      setActiveItem('#training-development');
+    }
+  }, [currentPath]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showLogo, setShowLogo] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -110,7 +127,9 @@ export default function Navbar() {
       const scrollY = window.scrollY;
 
       // Active section detection (ScrollSpy)
-      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
+      if (currentPath === 'training-development') {
+        setActiveItem('#training-development');
+      } else if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
         setActiveItem('#contact');
       } else {
         let current = '#home';
@@ -154,7 +173,7 @@ export default function Navbar() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [currentPath]);
 
   const handleNavPillClick = (e: React.MouseEvent) => {
     if (isCollapsed) {
@@ -232,6 +251,12 @@ export default function Navbar() {
             <a
               href="#home"
               id="nav-logo"
+              onClick={(e) => {
+                if (onNavigate) {
+                  e.preventDefault();
+                  onNavigate('home', '#home');
+                }
+              }}
               className="flex items-center group transition-transform duration-300 hover:scale-[1.03]"
               title="kRa Life Sciences"
             >
@@ -282,9 +307,14 @@ export default function Navbar() {
                     <a
                       href={item.href}
                       id="pill-nav-about-us"
-                      onClick={() => {
-                        setActiveItem(item.href);
-                        setAboutDropdownOpen((prev) => !prev);
+                      onClick={(e) => {
+                        if (currentPath === 'training-development' && onNavigate) {
+                          e.preventDefault();
+                          onNavigate('home', item.href);
+                        } else {
+                          setActiveItem(item.href);
+                          setAboutDropdownOpen((prev) => !prev);
+                        }
                       }}
                       className={`relative text-[14px] font-medium transition-all duration-200 px-3.5 sm:px-4 py-1.5 rounded-full flex items-center gap-1.5 justify-center whitespace-nowrap cursor-pointer ${
                         isParentActive
@@ -322,8 +352,14 @@ export default function Navbar() {
                                 e.stopPropagation();
                                 setActiveItem(sub.href);
                                 setAboutDropdownOpen(false);
+                                if (onNavigate) {
+                                  if (currentPath === 'training-development') {
+                                    e.preventDefault();
+                                    onNavigate('home', sub.href);
+                                  }
+                                }
                               }}
-                              className={`px-3.5 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 flex items-center justify-between ${
+                              className={`px-3.5 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 flex items-center justify-between cursor-pointer ${
                                 isSubActive
                                   ? 'text-[#00C4FF] font-semibold bg-[#0078B8]/30 border border-[#00C4FF]/40 shadow-[0_0_12px_rgba(0,196,255,0.25)]'
                                   : 'text-white/80 hover:text-[#00C4FF] hover:bg-white/[0.08]'
@@ -348,8 +384,19 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   id={`pill-nav-${item.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
-                  onClick={() => setActiveItem(item.href)}
-                  className={`relative text-[14px] font-medium transition-all duration-200 px-3.5 sm:px-4 py-1.5 rounded-full flex items-center justify-center whitespace-nowrap ${
+                  onClick={(e) => {
+                    setActiveItem(item.href);
+                    if (item.href === '#training-development') {
+                      if (onNavigate) {
+                        e.preventDefault();
+                        onNavigate('training-development');
+                      }
+                    } else if (onNavigate && currentPath === 'training-development') {
+                      e.preventDefault();
+                      onNavigate('home', item.href);
+                    }
+                  }}
+                  className={`relative text-[14px] font-medium transition-all duration-200 px-3.5 sm:px-4 py-1.5 rounded-full flex items-center justify-center whitespace-nowrap cursor-pointer ${
                     isActive
                       ? 'text-[#00C4FF] font-semibold bg-[#0078B8]/30 border border-[#00C4FF]/50 shadow-[0_0_16px_rgba(0,196,255,0.3)]'
                       : 'text-white/80 hover:text-[#00C4FF] hover:bg-white/[0.08]'
@@ -402,11 +449,15 @@ export default function Navbar() {
                     <div className="flex items-center justify-between">
                       <a
                         href={item.href}
-                        onClick={() => {
+                        onClick={(e) => {
                           setActiveItem(item.href);
                           setMobileMenuOpen(false);
+                          if (onNavigate && currentPath === 'training-development') {
+                            e.preventDefault();
+                            onNavigate('home', item.href);
+                          }
                         }}
-                        className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                        className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
                           isParentActive
                             ? 'bg-[#0078B8]/30 text-[#00C4FF] border border-[#00C4FF]/40'
                             : 'text-slate-200 hover:text-white hover:bg-white/[0.08]'
@@ -444,11 +495,15 @@ export default function Navbar() {
                             <a
                               key={sub.name}
                               href={sub.href}
-                              onClick={() => {
+                              onClick={(e) => {
                                 setActiveItem(sub.href);
                                 setMobileMenuOpen(false);
+                                if (onNavigate && currentPath === 'training-development') {
+                                  e.preventDefault();
+                                  onNavigate('home', sub.href);
+                                }
                               }}
-                              className={`px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium flex items-center justify-between transition-all duration-200 ${
+                              className={`px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium flex items-center justify-between transition-all duration-200 cursor-pointer ${
                                 isSubActive
                                   ? 'text-[#00C4FF] font-semibold bg-[#0078B8]/20'
                                   : 'text-slate-300 hover:text-white hover:bg-white/[0.06]'
@@ -472,11 +527,20 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => {
+                  onClick={(e) => {
                     setActiveItem(item.href);
                     setMobileMenuOpen(false);
+                    if (item.href === '#training-development') {
+                      if (onNavigate) {
+                        e.preventDefault();
+                        onNavigate('training-development');
+                      }
+                    } else if (onNavigate && currentPath === 'training-development') {
+                      e.preventDefault();
+                      onNavigate('home', item.href);
+                    }
                   }}
-                  className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                  className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'bg-[#0078B8]/30 text-[#00C4FF] border border-[#00C4FF]/40'
                       : 'text-slate-200 hover:text-white hover:bg-white/[0.08]'

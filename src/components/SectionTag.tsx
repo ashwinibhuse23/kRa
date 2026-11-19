@@ -29,7 +29,7 @@ export default function SectionTag({
       icon: 'text-[#CF3838]',
     },
     blue: {
-      pill: 'bg-transparent border-sky-300 text-sky-800',
+      pill: 'bg-transparent border-sky-400 text-[#0078B8]',
       icon: 'text-[#0078B8]',
     },
     white: {
