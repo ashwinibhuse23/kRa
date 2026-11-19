@@ -25,35 +25,143 @@ export default function TrainingDevelopment({
     window.scrollTo({ top: 0, behavior: 'instant' });
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      // 1. Hero Section Entrance (Immediate Slow Cinematic Load)
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.fromTo(
+      heroTl.fromTo(
         '.td-hero-tag',
-        { opacity: 0, y: 18, filter: 'blur(5px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9 },
+        { opacity: 0, y: 20, filter: 'blur(6px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, clearProps: 'all' },
         0.1
       );
 
-      tl.fromTo(
+      heroTl.fromTo(
         '.td-hero-title',
-        { opacity: 0, y: 25, filter: 'blur(8px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.1 },
-        0.2
+        { opacity: 0, y: 30, filter: 'blur(8px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.4, clearProps: 'all' },
+        0.25
       );
 
-      tl.fromTo(
+      heroTl.fromTo(
         '.td-hero-lead',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1 },
-        0.35
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 1.3, clearProps: 'all' },
+        0.4
       );
 
-      tl.fromTo(
+      heroTl.fromTo(
         '.td-hero-visual',
         { opacity: 0, scale: 0.96, filter: 'blur(8px)' },
-        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2 },
+        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.6, clearProps: 'all' },
         0.3
       );
+
+      heroTl.fromTo(
+        '.td-hero-pill-card',
+        { opacity: 0, y: 20, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.1, stagger: 0.12, clearProps: 'all' },
+        0.6
+      );
+
+      // Reusable slow entrance animation with ScrollTrigger for each subsequent section
+      // Guarantees smooth, slow, synchronized motion both in desktop and mobile view
+      const animateSection = (
+        triggerSelector: string,
+        elements: {
+          selector: string;
+          y?: number;
+          scale?: number;
+          duration?: number;
+          stagger?: number;
+          delay?: number;
+        }[]
+      ) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: triggerSelector,
+            start: 'top 85%',
+            once: true,
+          },
+          defaults: { ease: 'power3.out' },
+        });
+
+        elements.forEach((item) => {
+          tl.fromTo(
+            item.selector,
+            {
+              opacity: 0,
+              y: item.y ?? 35,
+              scale: item.scale ?? 1,
+              filter: 'blur(6px)',
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              filter: 'blur(0px)',
+              duration: item.duration ?? 1.3,
+              stagger: item.stagger ?? 0,
+              clearProps: 'all',
+            },
+            item.delay !== undefined ? item.delay : 0
+          );
+        });
+      };
+
+      // 2. Section 2: Workflows & Operational Excellence
+      animateSection('.td-section-workflows', [
+        { selector: '.td-workflows-header', y: 35, duration: 1.3, delay: 0 },
+        { selector: '.td-workflows-card', y: 30, scale: 0.97, duration: 1.2, stagger: 0.12, delay: 0.2 },
+      ]);
+
+      // 3. Section 3: Quality in Everyday Clinical Trials & BABE Banner
+      animateSection('.td-section-quality', [
+        { selector: '.td-quality-header', y: 35, duration: 1.3, delay: 0 },
+        { selector: '.td-quality-point-card', y: 25, duration: 1.1, stagger: 0.08, delay: 0.15 },
+        { selector: '.td-babe-banner', y: 20, scale: 0.95, duration: 1.2, delay: 0.3 },
+        { selector: '.td-quality-bottom-card', y: 25, scale: 0.96, duration: 1.1, stagger: 0.1, delay: 0.4 },
+      ]);
+
+      // 4. Section 4: Role-Specific Training Modules
+      animateSection('.td-section-roles', [
+        { selector: '.td-roles-header', y: 35, duration: 1.3, delay: 0 },
+        { selector: '.td-role-card', y: 35, scale: 0.96, duration: 1.3, stagger: 0.12, delay: 0.2 },
+      ]);
+
+      // 5. Section 5: Need-Based Training Programmes
+      animateSection('.td-section-need', [
+        { selector: '.td-need-header', y: 35, duration: 1.3, delay: 0 },
+        { selector: '.td-need-pill', y: 20, scale: 0.96, duration: 1.1, delay: 0.15 },
+        { selector: '.td-need-card', y: 25, scale: 0.97, duration: 1.1, stagger: 0.08, delay: 0.25 },
+      ]);
+
+      // 6. Section 6: Budgeting & Project Finance Management Banner
+      animateSection('.td-section-budget', [
+        { selector: '.td-budget-card', y: 30, scale: 0.98, duration: 1.3, delay: 0 },
+      ]);
+
+      // 7. Section 7: Flexible Training Delivery
+      animateSection('.td-section-delivery', [
+        { selector: '.td-delivery-header', y: 35, duration: 1.3, delay: 0 },
+        { selector: '.td-delivery-card', y: 25, scale: 0.96, duration: 1.1, stagger: 0.1, delay: 0.2 },
+      ]);
+
+      // 8. Section 8: Performance & Competence Excellence
+      animateSection('.td-section-performance', [
+        { selector: '.td-performance-content', y: 35, duration: 1.3, delay: 0 },
+      ]);
+
+      // 9. Section 9: Bottom Callout Banner
+      animateSection('.td-section-cta', [
+        { selector: '.td-cta-box', y: 30, scale: 0.98, duration: 1.3, delay: 0 },
+      ]);
+
+      // Refresh ScrollTrigger once DOM layout has fully settled
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 150);
+
+      return () => clearTimeout(timer);
     }, containerRef);
 
     return () => ctx.revert();
@@ -527,9 +635,9 @@ export default function TrainingDevelopment({
       </header>
 
       {/* ── Section 1: Hero Header (Matching Reference Design with /traning/training.png) ── */}
-      <section className="relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-14 bg-gradient-to-b from-[#F2F7FC] via-white to-white border-b border-slate-200/80">
+      <section className="td-section-hero relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-14 bg-gradient-to-b from-[#F2F7FC] via-white to-white border-b border-slate-200/80">
         {/* Full-Bleed Desktop Background Graphic (/traning/training.png) */}
-        <div className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
+        <div className="td-hero-visual hidden lg:block absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
           <img
             src="/traning/training.png"
             alt="Clinical Research Training & Development"
@@ -579,8 +687,8 @@ export default function TrainingDevelopment({
 
           </div>
 
-          {/* Mobile Illustration (Shown on mobile & tablet) */}
-          <div className="lg:hidden mt-6 rounded-2xl overflow-hidden border border-sky-200/80 shadow-md">
+          {/* Mobile Illustration (Hidden in mobile view, preserved for tablet/desktop responsive) */}
+          <div className="hidden md:block lg:hidden mt-6 rounded-2xl overflow-hidden border border-sky-200/80 shadow-md">
             <img
               src="/traning/training.png"
               alt="Clinical Research Training & Development"
@@ -591,7 +699,7 @@ export default function TrainingDevelopment({
           {/* ── 3 Pill Feature Cards (Matching Bottom of Reference Image 2) ── */}
           <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-3.5 relative z-10 max-w-[90%]">
             {/* Card 1: Roles, roles and responsibilities */}
-            <div className="rounded-xl p-3 bg-gradient-to-r from-sky-50/95 to-blue-50/80 border border-sky-200/80 flex items-center gap-2.5 shadow-xs hover:shadow-sm hover:border-sky-300 transition-all">
+            <div className="td-hero-pill-card rounded-xl p-3 bg-gradient-to-r from-sky-50/95 to-blue-50/80 border border-sky-200/80 flex items-center gap-2.5 shadow-xs hover:shadow-sm hover:border-sky-300 transition-all">
               <div className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#0078B8] shrink-0">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -603,7 +711,7 @@ export default function TrainingDevelopment({
             </div>
 
             {/* Card 2: SOP implementation and process adherence */}
-            <div className="rounded-xl p-3 bg-gradient-to-r from-rose-50/95 to-pink-50/80 border border-rose-200/80 flex items-center gap-2.5 shadow-xs hover:shadow-sm hover:border-rose-300 transition-all">
+            <div className="td-hero-pill-card rounded-xl p-3 bg-gradient-to-r from-rose-50/95 to-pink-50/80 border border-rose-200/80 flex items-center gap-2.5 shadow-xs hover:shadow-sm hover:border-rose-300 transition-all">
               <div className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#CF3838] shrink-0">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -615,7 +723,7 @@ export default function TrainingDevelopment({
             </div>
 
             {/* Card 3: Identifying gaps and improvement opportunities */}
-            <div className="rounded-xl p-3 bg-gradient-to-r from-sky-50/95 to-cyan-50/80 border border-sky-200/80 flex items-center gap-2.5 shadow-xs hover:shadow-sm hover:border-sky-300 transition-all">
+            <div className="td-hero-pill-card rounded-xl p-3 bg-gradient-to-r from-sky-50/95 to-cyan-50/80 border border-sky-200/80 flex items-center gap-2.5 shadow-xs hover:shadow-sm hover:border-sky-300 transition-all">
               <div className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#0078B8] shrink-0">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -629,10 +737,8 @@ export default function TrainingDevelopment({
         </div>
       </section>
 
-
-
       {/* ── Workflows & Operational Excellence Section ── */}
-      <section className="relative overflow-hidden min-h-[440px] md:min-h-[480px] lg:min-h-[500px] flex items-center bg-[#07172E]">
+      <section className="td-section-workflows relative overflow-hidden min-h-[440px] md:min-h-[480px] lg:min-h-[500px] flex items-center bg-[#07172E]">
         {/* Background Image - Positioned to show the full left-side gear graphic & vibrant high-tech details */}
         <div className="absolute inset-0 z-0">
           <img
@@ -642,73 +748,75 @@ export default function TrainingDevelopment({
           />
           {/* Subtle vignette for contrast behind text while keeping all visuals 100% bright */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#06172E]/10 to-[#06172E]/35 pointer-events-none" />
+          {/* Mobile contrast overlay (Hidden on tablet/desktop) */}
+          <div className="absolute inset-0 bg-[#07172E]/60 sm:hidden pointer-events-none" />
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2 sm:pt-3 lg:pt-4 pb-8 sm:pb-10 lg:pb-12">
-          {/* Header - Shifted higher up with refined bottom space & clear left padding to avoid left orbit graphics */}
-          <div className="text-center max-w-5xl mx-auto mb-6 sm:mb-8 lg:mb-10 flex flex-col items-center pl-12 sm:pl-28 md:pl-40 lg:pl-56 xl:pl-68 translate-x-2 sm:translate-x-5 lg:translate-x-8">
-            {/* Headline - Single line serif heading */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] xl:text-[36px] font-bold font-serif tracking-tight text-center mb-2 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] whitespace-nowrap">
+          {/* Header - Centered on mobile, shifted on desktop */}
+          <div className="td-workflows-header text-center max-w-5xl mx-auto mb-6 sm:mb-8 lg:mb-10 flex flex-col items-center px-4 sm:px-0 sm:pl-28 md:pl-40 lg:pl-56 xl:pl-68 sm:translate-x-5 lg:translate-x-8">
+            {/* Headline - Responsive wrap on mobile, single line on desktop */}
+            <h2 className="text-[20px] min-[390px]:text-[22px] sm:text-2xl md:text-3xl lg:text-[34px] xl:text-[36px] font-bold font-serif tracking-tight text-center mb-2 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] sm:whitespace-nowrap">
               <span className="text-white">Workflows &amp; </span>
               <span className="text-[#00C4FF]">Operational Excellence</span>
             </h2>
 
             {/* Subtitle - Website theme paragraph styling with increased size */}
-            <p className="text-sm sm:text-[15px] lg:text-base text-slate-200/90 font-sans leading-relaxed text-center max-w-xl mx-auto mb-2 drop-shadow-sm font-normal">
+            <p className="text-xs min-[380px]:text-sm sm:text-[15px] lg:text-base text-slate-200/90 font-sans leading-relaxed text-center max-w-xl mx-auto mb-2 drop-shadow-sm font-normal px-2 sm:px-0">
               Improving coordination, productivity and operational effectiveness.
             </p>
           </div>
 
-          {/* Cards Grid - 4 High-Tech Blue Cards with Cyan Glowing Borders */}
-          <div className="flex justify-end w-full pl-6 sm:pl-10 md:pl-16 lg:pl-24 pr-6 sm:pr-11 md:pr-18 lg:pr-26 xl:pr-32">
-            <div className="w-full lg:w-[60%] xl:w-[54%] max-w-xl lg:max-w-2xl">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-4.5">
+          {/* Cards Grid - Centered on mobile, aligned on desktop */}
+          <div className="flex justify-center sm:justify-end w-full px-3 sm:px-0 sm:pl-10 md:pl-16 lg:pl-24 sm:pr-11 md:pr-18 lg:pr-26 xl:pr-32">
+            <div className="w-full max-w-sm min-[420px]:max-w-md sm:max-w-xl lg:max-w-2xl lg:w-[60%] xl:w-[54%]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4.5">
                 {/* Card 1: Role-based workflows (Blue Circular Icon Badge) */}
-                <div className="bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-4 sm:p-5 min-h-[92px] sm:min-h-[100px] flex items-center gap-3.5 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0078B8] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
-                    <svg className="w-5.5 h-5.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="td-workflows-card bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 min-h-[84px] sm:min-h-[100px] flex items-center gap-3 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#0078B8] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
-                  <p className="text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
+                  <p className="text-[12.5px] min-[380px]:text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
                     Role-based workflows and task management
                   </p>
                 </div>
 
                 {/* Card 2: Cross-functional coordination (Red Circular Icon Badge) */}
-                <div className="bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-4 sm:p-5 min-h-[92px] sm:min-h-[100px] flex items-center gap-3.5 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#CF3838] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
-                    <svg className="w-5.5 h-5.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="td-workflows-card bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 min-h-[84px] sm:min-h-[100px] flex items-center gap-3 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#CF3838] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <p className="text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
+                  <p className="text-[12.5px] min-[380px]:text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
                     Cross-functional coordination and communication
                   </p>
                 </div>
 
                 {/* Card 3: Risk identification (Blue Circular Icon Badge) */}
-                <div className="bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-4 sm:p-5 min-h-[92px] sm:min-h-[100px] flex items-center gap-3.5 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0078B8] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
-                    <svg className="w-5.5 h-5.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="td-workflows-card bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 min-h-[84px] sm:min-h-[100px] flex items-center gap-3 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#0078B8] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                   </div>
-                  <p className="text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
+                  <p className="text-[12.5px] min-[380px]:text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
                     Risk identification and issue resolution
                   </p>
                 </div>
 
                 {/* Card 4: Resource utilisation (Red Circular Icon Badge) */}
-                <div className="bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-4 sm:p-5 min-h-[92px] sm:min-h-[100px] flex items-center gap-3.5 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#CF3838] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
-                    <svg className="w-5.5 h-5.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="td-workflows-card bg-[#061C3D]/90 sm:bg-[#061C3D]/85 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 min-h-[84px] sm:min-h-[100px] flex items-center gap-3 sm:gap-4 border border-[#00C4FF]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(0,196,255,0.2)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.6),0_0_24px_rgba(0,196,255,0.4)] hover:border-[#00C4FF] hover:bg-[#08244D] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#CF3838] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-md text-white">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                     </svg>
                   </div>
-                  <p className="text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
+                  <p className="text-[12.5px] min-[380px]:text-[13px] sm:text-[14px] lg:text-[14.5px] font-medium sm:font-semibold text-white leading-snug drop-shadow-xs">
                     Resource utilisation and continuous improvement
                   </p>
                 </div>
@@ -721,7 +829,7 @@ export default function TrainingDevelopment({
 
 
       {/* ── Section 3: Quality in Everyday Clinical Trials (Unified Design Matching Reference) ── */}
-      <section id="clinical-trials" className="relative overflow-hidden py-6 sm:py-8 lg:py-10 bg-[#F2F8FD] border-b border-sky-100/80">
+      <section id="clinical-trials" className="td-section-quality relative overflow-hidden py-6 sm:py-8 lg:py-10 bg-[#F2F8FD] border-b border-sky-100/80">
         {/* Background Image: quality.png showing test tubes, pipette and DNA graphic on the right */}
         <div className="absolute inset-0 z-0">
           <img
@@ -736,7 +844,7 @@ export default function TrainingDevelopment({
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Top Part: Header + 5 Quality Points */}
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-            <div className="lg:col-span-7 xl:col-span-6 pl-2 sm:pl-3 lg:pl-4 pr-0 lg:pr-6">
+            <div className="td-quality-header lg:col-span-7 xl:col-span-6 pl-2 sm:pl-3 lg:pl-4 pr-0 lg:pr-6">
               {/* Title - Signature Website Heading Theme with Gradient Accent */}
               <h2 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[36px] font-bold font-serif text-[#061C3D] tracking-tight leading-tight mb-2 sm:mb-2.5">
                 Quality in Everyday{' '}
@@ -753,7 +861,7 @@ export default function TrainingDevelopment({
               {/* 5 Quality Cards in 2 Columns with Colored Borders & Proper Design */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-w-2xl">
                 {/* Point 1: ICH-GCP (Blue) */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
+                <div className="td-quality-point-card bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-[#0078B8] bg-sky-50/80 text-[#0078B8] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0078B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -766,7 +874,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Point 2: Protocol Adherence (Red) */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-rose-200/80 hover:border-[#CF3838] shadow-[0_2px_8px_rgba(207,56,56,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
+                <div className="td-quality-point-card bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-rose-200/80 hover:border-[#CF3838] shadow-[0_2px_8px_rgba(207,56,56,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-[#CF3838] bg-rose-50/80 text-[#CF3838] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#CF3838]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -781,7 +889,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Point 3: Source Documentation (Blue) */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
+                <div className="td-quality-point-card bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-[#0078B8] bg-sky-50/80 text-[#0078B8] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0078B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
@@ -794,7 +902,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Point 4: AE/SAE Reporting (Red) */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-rose-200/80 hover:border-[#CF3838] shadow-[0_2px_8px_rgba(207,56,56,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
+                <div className="td-quality-point-card bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-rose-200/80 hover:border-[#CF3838] shadow-[0_2px_8px_rgba(207,56,56,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-[#CF3838] bg-rose-50/80 text-[#CF3838] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#CF3838]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
@@ -808,7 +916,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Point 5: Audit Readiness (Blue) */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
+                <div className="td-quality-point-card bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md transition-all duration-200 p-2 sm:p-2.5 flex items-center gap-2.5 sm:gap-3 group cursor-default">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-[#0078B8] bg-sky-50/80 text-[#0078B8] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0078B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="11" cy="11" r="6.5" />
@@ -827,7 +935,7 @@ export default function TrainingDevelopment({
           </div>
 
           {/* Middle Divider Pill */}
-          <div className="relative flex items-center justify-center mt-3 sm:mt-4 lg:mt-5 mb-7 sm:mb-8 lg:mb-9">
+          <div className="td-babe-banner relative flex items-center justify-center mt-3 sm:mt-4 lg:mt-5 mb-7 sm:mb-8 lg:mb-9">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-sky-300/70" />
             </div>
@@ -843,7 +951,7 @@ export default function TrainingDevelopment({
               return (
                 <div
                   key={card.title}
-                  className="bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-100/90 shadow-[0_3px_10px_rgba(0,120,184,0.05)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center text-center px-3 py-2.5 sm:px-3.5 sm:py-3 pt-0 group cursor-default min-h-[94px] sm:min-h-[102px] justify-start"
+                  className="td-quality-bottom-card bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl border border-sky-100/90 shadow-[0_3px_10px_rgba(0,120,184,0.05)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center text-center px-3 py-2.5 sm:px-3.5 sm:py-3 pt-0 group cursor-default min-h-[94px] sm:min-h-[102px] justify-start"
                 >
                   {/* Floating Bookmark Flag Badge at Top */}
                   <div
@@ -873,14 +981,14 @@ export default function TrainingDevelopment({
 
 
       {/* ── Section 5: Role-Specific Training Modules (Matching Reference Design) ── */}
-      <section id="role-modules" className="relative py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#F7FAFD] via-white to-[#F5FAFD] border-b border-slate-200/80 overflow-hidden">
+      <section id="role-modules" className="td-section-roles relative py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#F7FAFD] via-white to-[#F5FAFD] border-b border-slate-200/80 overflow-hidden">
         {/* Soft Background Accent Glows */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-200/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Section Header Matching Website Theme */}
-          <div className="mb-6 sm:mb-7 lg:mb-8 max-w-6xl mx-auto pl-2 sm:pl-3 lg:pl-4">
+          <div className="td-roles-header mb-6 sm:mb-7 lg:mb-8 max-w-6xl mx-auto pl-2 sm:pl-3 lg:pl-4">
             {/* Title - Signature Website Heading Theme with Gradient Accent */}
             <h2 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[36px] font-bold font-serif text-[#061C3D] tracking-tight leading-tight mb-2.5 sm:mb-3">
               Role-Specific Training{' '}
@@ -902,7 +1010,7 @@ export default function TrainingDevelopment({
               return (
                 <div
                   key={role.title}
-                  className={`bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-[0_3px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group border-b-[3.5px] ${
+                  className={`td-role-card bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-[0_3px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group border-b-[3.5px] ${
                     isRed ? 'border-b-[#CF3838]' : 'border-b-[#0078B8]'
                   }`}
                 >
@@ -960,16 +1068,14 @@ export default function TrainingDevelopment({
       </section>
 
       {/* ── Section 6: Need-Based Training Programmes (With need.png Background) ── */}
-      <section id="need-based" className="relative overflow-hidden py-6 sm:py-8 lg:py-10 bg-[#F4F9FD] border-b border-sky-100/80">
-        {/* Background Image - need.png showing 3D cubes on left and subtle gradient on right */}
-        <div className="absolute inset-0 z-0">
+      <section id="need-based" className="td-section-need relative overflow-hidden py-6 sm:py-8 lg:py-10 bg-[#F4F9FD] border-b border-sky-100/80">
+        {/* Background Image - need.png showing 3D cubes on left (Hidden on mobile view, shown on tablet/desktop) */}
+        <div className="hidden md:block absolute inset-0 z-0">
           <img
             src="/traning/need.png"
             alt="Need-Based Training Programmes"
             className="w-full h-full object-cover object-left md:object-center"
           />
-          {/* Subtle mobile overlay to ensure readability on small screens */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/70 md:hidden" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -980,7 +1086,7 @@ export default function TrainingDevelopment({
             {/* Right Column: Content from Reference Design */}
             <div className="md:col-span-8 lg:col-span-8 md:pl-3 lg:pl-13">
               {/* Section Header Matching Website Theme */}
-              <div className="mb-4 sm:mb-5">
+              <div className="td-need-header mb-4 sm:mb-5">
                 {/* Title - Signature Website Heading Theme with Gradient Accent */}
                 <h2 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[35px] font-bold font-serif text-[#061C3D] tracking-tight leading-tight mb-2 sm:mb-2.5">
                   Need-Based Training{' '}
@@ -996,7 +1102,7 @@ export default function TrainingDevelopment({
               </div>
 
               {/* Blue Pill: "Our interventions include:" */}
-              <div className="mb-3 sm:mb-3.5 mt-1 sm:mt-1.5">
+              <div className="td-need-pill mb-3 sm:mb-3.5 mt-1 sm:mt-1.5">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-[#005285] via-[#0078B8] to-[#005285] text-white font-bold text-xs sm:text-[13px] tracking-wide shadow-md">
                   Our interventions include:
                 </span>
@@ -1009,7 +1115,7 @@ export default function TrainingDevelopment({
                   return (
                     <div
                       key={item.title}
-                      className={`bg-white/95 backdrop-blur-xs rounded-full border transition-all duration-200 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-3.5 py-1.5 sm:py-2 group cursor-default ${
+                      className={`td-need-card bg-white/95 backdrop-blur-xs rounded-full border transition-all duration-200 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-3.5 py-1.5 sm:py-2 group cursor-default ${
                         isRed
                           ? 'border-rose-200/80 hover:border-[#CF3838] shadow-[0_2px_8px_rgba(207,56,56,0.04)] hover:shadow-md'
                           : 'border-sky-200/80 hover:border-[#0078B8] shadow-[0_2px_8px_rgba(0,120,184,0.04)] hover:shadow-md'
@@ -1045,9 +1151,9 @@ export default function TrainingDevelopment({
       </section>
 
       {/* ── Budgeting & Project Finance Management (One-Liner Banner Similar to CTA Section) ── */}
-      <section className="relative py-4 sm:py-5 bg-white border-b border-sky-100/80">
+      <section className="td-section-budget relative py-4 sm:py-5 bg-white border-b border-sky-100/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="bg-gradient-to-r from-[#EBF5FA] via-white to-[#EBF5FA] border border-sky-200/90 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-xs hover:shadow-md transition-shadow duration-300">
+          <div className="td-budget-card bg-gradient-to-r from-[#EBF5FA] via-white to-[#EBF5FA] border border-sky-200/90 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-xs hover:shadow-md transition-shadow duration-300">
             <div className="flex items-center gap-3.5 sm:gap-4.5 min-w-0">
               {/* Financial Management Icon in Circle */}
               <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-sky-100 border border-sky-200/70 text-[#0078B8] flex items-center justify-center shrink-0 shadow-xs">
@@ -1070,7 +1176,7 @@ export default function TrainingDevelopment({
       </section>
 
       {/* ── Section 5: Flexible Training Delivery ── */}
-      <section id="flexible-delivery" className="relative overflow-hidden py-7 sm:py-9 lg:py-10 bg-gradient-to-b from-[#F2F8FD] via-white to-[#F2F8FD] border-b border-sky-100/80">
+      <section id="flexible-delivery" className="td-section-delivery relative overflow-hidden py-7 sm:py-9 lg:py-10 bg-gradient-to-b from-[#F2F8FD] via-white to-[#F2F8FD] border-b border-sky-100/80">
         {/* Soft Background Accent Glows */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-200/25 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
@@ -1079,7 +1185,7 @@ export default function TrainingDevelopment({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             
             {/* Left Column: Title & Target Motto */}
-            <div className="lg:col-span-5 flex flex-col justify-center pl-1.5 sm:pl-2 lg:pl-3">
+            <div className="td-delivery-header lg:col-span-5 flex flex-col justify-center pl-1.5 sm:pl-2 lg:pl-3">
               {/* Title - Signature Website Heading Theme with Gradient Accent in One Line */}
               <h2 className="text-2xl sm:text-3xl lg:text-[29px] xl:text-[33px] font-bold font-serif text-[#061C3D] tracking-tight leading-tight mb-3 sm:mb-4 sm:whitespace-nowrap">
                 Flexible{' '}
@@ -1111,7 +1217,7 @@ export default function TrainingDevelopment({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 w-full max-w-xl lg:max-w-[530px]">
                 
                 {/* Card 1: Instructor-Led Training */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
+                <div className="td-delivery-card bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#EBF5FA] border border-sky-200/70 flex items-center justify-center shrink-0 text-[#0078B8] group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="3" width="12" height="9" rx="1" />
@@ -1141,7 +1247,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Card 2: Virtual Training */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
+                <div className="td-delivery-card bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#EBF5FA] border border-sky-200/70 flex items-center justify-center shrink-0 text-[#0078B8] group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="4" width="18" height="12" rx="2" />
@@ -1168,7 +1274,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Card 3: Practical & Case-Based Learning */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
+                <div className="td-delivery-card bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#EBF5FA] border border-sky-200/70 flex items-center justify-center shrink-0 text-[#0078B8] group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -1193,7 +1299,7 @@ export default function TrainingDevelopment({
                 </div>
 
                 {/* Card 4: Workshops & Refresher Sessions */}
-                <div className="bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
+                <div className="td-delivery-card bg-white/95 backdrop-blur-xs rounded-xl border border-sky-100/90 shadow-[0_2px_10px_rgba(0,120,184,0.06)] hover:shadow-md hover:border-sky-300 transition-all duration-200 p-2.5 sm:p-3 flex items-center gap-2.5 sm:gap-3 relative overflow-hidden group cursor-default">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#EBF5FA] border border-sky-200/70 flex items-center justify-center shrink-0 text-[#0078B8] group-hover:scale-105 transition-transform duration-200">
                     <svg className="w-4.5 h-4.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="7" r="3" />
@@ -1228,22 +1334,20 @@ export default function TrainingDevelopment({
       </section>
 
       {/* ── Section 6: Performance & Competence Excellence (With performance.png Background) ── */}
-      <section id="performance-excellence" className="relative overflow-hidden py-5 sm:py-6 lg:py-7 bg-[#F2F7FC] border-b border-sky-100/80">
-        {/* Background Image Container */}
-        <div className="absolute inset-0 z-0">
+      <section id="performance-excellence" className="td-section-performance relative overflow-hidden py-5 sm:py-6 lg:py-7 bg-[#F2F7FC] border-b border-sky-100/80">
+        {/* Background Image Container (Hidden on mobile view, shown on tablet/desktop) */}
+        <div className="hidden md:block absolute inset-0 z-0">
           <img
             src="/traning/performance.png"
             alt="Building Competence, Embedding Quality, Improving Performance"
             className="w-full h-full object-cover object-right"
           />
-          {/* Subtle mobile overlay for optimal text legibility on narrow screens */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent md:hidden pointer-events-none" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center min-h-[220px] sm:min-h-[250px]">
             {/* Left Content Area */}
-            <div className="lg:col-span-7 xl:col-span-6 pr-0 lg:pr-6 pt-1 sm:pt-1.5 pl-1 sm:pl-2 lg:pl-3">
+            <div className="td-performance-content lg:col-span-7 xl:col-span-6 pr-0 lg:pr-6 pt-1 sm:pt-1.5 pl-1 sm:pl-2 lg:pl-3">
               {/* Title - Signature Website Heading Theme with Gradient Accent in Two Lines */}
               <h2 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[35px] font-bold font-serif text-[#061C3D] tracking-tight leading-tight mb-3 sm:mb-3.5">
                 <span className="block sm:whitespace-nowrap">Building Competence. Embedding Quality.</span>
@@ -1280,9 +1384,9 @@ export default function TrainingDevelopment({
 
 
       {/* ── Section 6: Bottom Callout Banner (Matching Reference Design) ── */}
-      <section className="relative pt-6 sm:pt-8 pb-10 sm:pb-14 bg-white">
+      <section className="td-section-cta relative pt-6 sm:pt-8 pb-10 sm:pb-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="bg-gradient-to-r from-[#EBF5FA] via-white to-[#EBF5FA] border border-sky-200/90 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
+          <div className="td-cta-box bg-gradient-to-r from-[#EBF5FA] via-white to-[#EBF5FA] border border-sky-200/90 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
             
             <div className="flex items-center gap-4 sm:gap-5">
               {/* Handshake Icon in Circle */}
